@@ -256,7 +256,7 @@ class SignupPage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           ReactiveTextField(
-            formControlName: 'price',
+            formControlName: 'cost',
             decoration: const InputDecoration(
               icon: Icon(Icons.phone),
               border: OutlineInputBorder(),
@@ -264,19 +264,20 @@ class SignupPage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           ReactiveTextField(
-            formControlName: 'details',
+            formControlName: 'description',
             decoration: const InputDecoration(
               icon: Icon(Icons.credit_card_outlined),
               border: OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 12),
-          ReactiveTextField(
-            formControlName: 'available',
-            decoration: const InputDecoration(
-              icon: Icon(Icons.family_restroom),
-              border: OutlineInputBorder(),
-            ),
+          Row(
+            children: [
+              const Text("Available"),
+              ReactiveCheckbox(
+                formControlName: 'available',
+              ),
+            ],
           ),
           const Spacer(),
           finishButton(),
