@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'pages/home/home.dart';
 import 'pages/signup/signup.dart';
 import 'welcome.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         // ),
         GetPage(name: '/', page: () => WelcomePage()),
         GetPage(name: '/signup', page: () => SignupPage()),
-        // GetPage(name: '/home', page: () => HomePage()),
+        GetPage(name: '/home', page: () => HomePage()),
         // GetPage(name: '/settings', page: () => SettingsPage()),
         // GetPage(name: '/profile', page: () => ProfilePage()),
         // GetPage(name: '/admin', page: () => AdminPage()),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:her_work/widgets/background_wave.dart';
 
 import 'package:reactive_forms/reactive_forms.dart';
 // import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -31,9 +32,10 @@ class SignupPage extends StatelessWidget {
   final serviceForm = fb.group({
     "serviceName": "Chef Raheela",
     "contactNum": "03213210123",
-    "cnic": "4210191111111",
     "address": "A-111 G, Block G, North Nazimabad",
-    "email": "raheela.khan@gmail.com"
+    "email": "raheela.khan@gmail.com",
+    "time": "",
+    "serviceType": "Food",
   });
   final offerForm = fb.group({
     "offerName": "Biryani",
@@ -51,27 +53,10 @@ class SignupPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Opacity(
-          //   opacity: 0.6,
-          //   child: WaveWidget(
-          //     config: CustomConfig(
-          //       gradients: [
-          //         [Colors.orange, Colors.amber],
-          //         [Colors.deepOrange, Colors.deepOrangeAccent],
-          //         [Colors.blue[700]!, const Color(0x00004890)],
-          //       ],
-          //       durations: [35000, 19440, 10800],
-          //       heightPercentages: [0.20, 0.3, 0.45],
-          //       blur: const MaskFilter.blur(BlurStyle.solid, 5),
-          //       gradientBegin: Alignment.bottomLeft,
-          //       gradientEnd: Alignment.topRight,
-          //     ),
-          //     size: const Size(
-          //       double.infinity,
-          //       double.infinity,
-          //     ),
-          //   ),
-          // ),
+          const Opacity(
+            opacity: 0.6,
+            child: BackgroundWave(),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: PageView(
@@ -212,7 +197,7 @@ class SignupPage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           ReactiveTextField(
-            formControlName: 'fatherName',
+            formControlName: 'contactNum',
             decoration: const InputDecoration(
               icon: Icon(Icons.person_outline),
               border: OutlineInputBorder(),
@@ -220,7 +205,23 @@ class SignupPage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           ReactiveTextField(
-            formControlName: 'dateOfBirth',
+            formControlName: 'address',
+            decoration: const InputDecoration(
+              icon: Icon(Icons.calendar_today),
+              border: OutlineInputBorder(),
+            ),
+          ),
+          const SizedBox(height: 12),
+          ReactiveTextField(
+            formControlName: 'email',
+            decoration: const InputDecoration(
+              icon: Icon(Icons.calendar_today),
+              border: OutlineInputBorder(),
+            ),
+          ),
+          const SizedBox(height: 12),
+          ReactiveTextField(
+            formControlName: 'time',
             decoration: const InputDecoration(
               icon: Icon(Icons.calendar_today),
               border: OutlineInputBorder(),
