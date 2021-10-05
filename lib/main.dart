@@ -1,12 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pages/home/home.dart';
 import 'pages/signup/signup.dart';
+import 'services/api_firestore.dart';
 import 'welcome.dart';
 
 void main() {
   runApp(const MyApp());
+}
+
+Future<void> initializeServices() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  Get.put(ApiService());
+  // await Get.putAsync(() => ApiService().init());
+  // await Get.putAsync(SettingsService()).init();
+  return;
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +25,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  GetMaterialApp(
+    return GetMaterialApp(
       title: 'HerWork',
       initialRoute: '/',
       getPages: [

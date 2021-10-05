@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:her_work/services/api_firestore.dart';
 import 'package:her_work/widgets/background_wave.dart';
 
 import 'package:reactive_forms/reactive_forms.dart';
@@ -15,7 +15,7 @@ class SignupPage extends StatelessWidget {
   SignupPage({Key? key}) : super(key: key);
   final PageController pageController = PageController(initialPage: 0);
   final String title = "Sign Up";
-  // final Api api = Get.find<Api>();
+  final ApiService api = Get.find<ApiService>();
 
   // creates a group
   // final form = fb.group({
@@ -117,8 +117,8 @@ class SignupPage extends StatelessWidget {
           child: ElevatedButton.icon(
               onPressed: () {
                 // api.callRegistration();
-                // Get.snackbar("Account Registration Successful!", "Yay!");
-                // Get.offAll(() => const DashboardPage());
+                Get.snackbar("Account Registration Successful!", "Yay!");
+                Get.offAllNamed("/home");
               },
               label: const Text("Create an Account"),
               icon: const Icon(Icons.check_circle)),
