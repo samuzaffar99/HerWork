@@ -5,8 +5,7 @@ import 'package:get/get.dart';
 
 import 'services/login_api.dart';
 import 'widgets/background_wave.dart';
-
-// import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class WelcomePage extends StatelessWidget {
   WelcomePage({Key? key}) : super(key: key);
@@ -54,15 +53,15 @@ class WelcomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // PinCodeTextField(
-                    //   appContext: context,
-                    //   length: 6,
-                    //   obscureText: false,
-                    //   animationType: AnimationType.fade,
-                    //   animationDuration: const Duration(milliseconds: 300),
-                    //   controller: loginController.codeController,
-                    //   onChanged: (_) {},
-                    // ),
+                    PinCodeTextField(
+                      appContext: context,
+                      length: 6,
+                      obscureText: false,
+                      animationType: AnimationType.fade,
+                      animationDuration: const Duration(milliseconds: 300),
+                      controller: loginController.codeController,
+                      onChanged: (_) {},
+                    ),
                     ElevatedButton(
                       onPressed: () {
                         loginController.confirmCode();

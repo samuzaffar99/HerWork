@@ -7,7 +7,8 @@ import 'pages/signup/signup.dart';
 import 'services/api_firestore.dart';
 import 'welcome.dart';
 
-void main() {
+Future<void> main() async {
+  await initializeServices();
   runApp(const MyApp());
 }
 
