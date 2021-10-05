@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "11475186612",
+    "project_id": "herwork-tbs",
+    "storage_bucket": "herwork-tbs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11475186612:android:087af3a36e36ebe79cf8e1",
+        "android_client_info": {
+          "package_name": "com.tbs.her_work"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11475186612-tv8sch3i5cjjgrqj6r9cccnf979eu3p1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tbs.her_work",
+            "certificate_hash": "56089f345288bc8c24b1ee87cc2c062c7d3f540f"
+          }
+        },
+        {
+          "client_id": "11475186612-mt104hces651bokgn7ce81po27jfvbqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmG5_o5FmWNpg6Ft8-BlXt4Jkd1M-y9Pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11475186612-mt104hces651bokgn7ce81po27jfvbqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
