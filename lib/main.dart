@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pages/home/home.dart';
+import 'pages/search/search.dart';
 import 'pages/signup/signup.dart';
 import 'services/api_firestore.dart';
 import 'welcome.dart';
@@ -41,10 +42,10 @@ class MyApp extends StatelessWidget {
         // GetPage(name: '/settings', page: () => SettingsPage()),
         // GetPage(name: '/profile', page: () => ProfilePage()),
         // GetPage(name: '/admin', page: () => AdminPage()),
-        // GetPage(name: '/search', page: () => SearchPage(), transition: Transition.zoom),
+        GetPage(name: '/search', page: () => SearchPage(), transition: Transition.leftToRightWithFade),
       ],
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
         // textTheme: GoogleFonts.robotoTextTheme(
         //   Theme.of(context).textTheme,
         // ),

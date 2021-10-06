@@ -11,19 +11,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 // import '../../api.dart';
 // import '../dashboard.dart';
 
-class SignupPage extends StatelessWidget {
-  SignupPage({Key? key}) : super(key: key);
-  final PageController pageController = PageController(initialPage: 0);
-  final String title = "Sign Up";
-  final ApiService api = Get.find<ApiService>();
-
-  // creates a group
-  // final form = fb.group({
-  //   'name': 'John Doe',
-  //   'email': ['', Validators.required, Validators.email],
-  //   'password': Validators.required,
-  // });
-
+class SignupController extends GetxController {
   final detailsForm = fb.group({
     "name": "Syeda Raheela Khan",
     "contactNum": "03213210123",
@@ -43,6 +31,21 @@ class SignupPage extends StatelessWidget {
     "description": "Tasty Homemade Biryani",
     "available": true
   });
+}
+
+class SignupPage extends StatelessWidget {
+  SignupPage({Key? key}) : super(key: key);
+  final PageController pageController = PageController(initialPage: 0);
+  final String title = "Sign Up";
+  final ApiService api = Get.find<ApiService>();
+  final SignupController controller = Get.put(SignupController());
+  // creates a group
+  // final form = fb.group({
+  //   'name': 'John Doe',
+  //   'email': ['', Validators.required, Validators.email],
+  //   'password': Validators.required,
+  // });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,7 +149,7 @@ class SignupPage extends StatelessWidget {
 
   Widget form1() {
     return ReactiveForm(
-      formGroup: detailsForm,
+      formGroup: controller.detailsForm,
       child: Column(
         // mainAxisSize: MainAxisSize.max,
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -184,7 +187,7 @@ class SignupPage extends StatelessWidget {
 
   Widget form2() {
     return ReactiveForm(
-      formGroup: serviceForm,
+      formGroup: controller.serviceForm,
       child: Column(
         children: <Widget>[
           const SizedBox(height: 24),
@@ -244,7 +247,7 @@ class SignupPage extends StatelessWidget {
 
   Widget form3() {
     return ReactiveForm(
-      formGroup: offerForm,
+      formGroup: controller.offerForm,
       child: Column(
         children: <Widget>[
           const SizedBox(height: 24),

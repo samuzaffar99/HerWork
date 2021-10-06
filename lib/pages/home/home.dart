@@ -156,7 +156,7 @@ class HomePage extends StatelessWidget {
                       primary: Colors.blueAccent,
                     ),
                     onPressed: () {
-                      // Get.to(() => ServicesPage());
+                      Get.toNamed("/search");
                     },
                   ),
                 ),

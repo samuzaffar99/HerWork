@@ -10,9 +10,9 @@ class BackgroundWave extends StatelessWidget {
     return WaveWidget(
       config: CustomConfig(
         gradients: [
-          [Colors.orange, Colors.amber],
+          [Colors.purple, Colors.purpleAccent],
           [Colors.deepOrange, Colors.deepOrangeAccent],
-          [Colors.blue[700]!, const Color(0x00004890)],
+          [Colors.pink[700]!, Colors.pinkAccent],
         ],
         durations: [35000, 19440, 10800],
         heightPercentages: [0.20, 0.3, 0.45],

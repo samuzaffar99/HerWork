@@ -10,8 +10,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 class WelcomePage extends StatelessWidget {
   WelcomePage({Key? key}) : super(key: key);
 
-  // final String title = "Welcome";
-
   final LoginController loginController = Get.put(LoginController());
 
   @override
@@ -31,7 +29,7 @@ class WelcomePage extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text('HerWork', style: TextStyle(fontSize: 32)),
+                    const Text('HerWork', style: TextStyle(fontSize: 36,color: Colors.pinkAccent,letterSpacing: 3)),
                     const SizedBox(height: 24),
                     TextField(
                         keyboardType: TextInputType.phone,
