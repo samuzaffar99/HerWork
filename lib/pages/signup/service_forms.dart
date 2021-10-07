@@ -19,6 +19,7 @@ class ServiceFormController extends GetxController {
     "available": true
   });
   final RxList offersList = [].obs;
+
   void postForm() {
     final api = Get.find<ApiService>();
     api.postService({...serviceForm.value, "offers": offersList});

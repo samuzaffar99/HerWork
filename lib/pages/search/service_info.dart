@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:her_work/services/api_firestore.dart';
 import 'package:her_work/widgets/buttons.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
 class ServiceInfoController extends GetxController {
   final service = Get.arguments[0];
@@ -48,25 +50,40 @@ class ServiceInfoPage extends StatelessWidget {
 
 class MessageButton extends GetView<ServiceInfoController> {
   const MessageButton({Key? key}) : super(key: key);
-  void message() {}
+
+  Future<void> message() async {
+    final link = WhatsAppUnilink(
+      phoneNumber: '+001-(555)1234567',
+      text: "Hey! ${controller.service["serviceName"]}, I would like to know",
+    );
+    await launch('$link');
+  }
 
   @override
   Widget build(BuildContext context) {
     return StyledElevatedButtonIcon(
-        Colors.pink, "Message", Icons.message, message);
+        Colors.pink, "Message", Icons.message, () => message);
   }
 }
 
 class CallButton extends GetView<ServiceInfoController> {
   const CallButton({Key? key}) : super(key: key);
-  void call() {}
+
+  Future<void> call() async {
+    final Uri link = Uri(
+      scheme: 'tel',
+      path: controller.service["contactNum"],
+    );
+    await launch(link.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
     return StyledElevatedButtonIcon(
-        Colors.pink, "Call Now", Icons.call, call);
+        Colors.pink, "Call Now", Icons.call, () => call);
   }
 }
+
 class ServiceCard extends GetView<ServiceInfoController> {
   const ServiceCard({Key? key}) : super(key: key);
 

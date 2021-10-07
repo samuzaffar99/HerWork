@@ -7,6 +7,7 @@ import 'signup.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,6 +36,7 @@ class DetailsPage extends StatelessWidget {
 
 class ServiceDetailsPage extends StatelessWidget {
   const ServiceDetailsPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -128,6 +130,7 @@ class Offers extends GetView<ServiceFormController> {
 
 class ServiceOffersPage extends StatelessWidget {
   const ServiceOffersPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(

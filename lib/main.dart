@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pages/home/home.dart';
-import 'pages/profile/add_service.dart';
-import 'pages/profile/manage_service.dart';
+import 'pages/my_services/add_service.dart';
+import 'pages/my_services/manage_service.dart';
 import 'pages/profile/services.dart';
 import 'pages/search/search.dart';
 import 'pages/search/service_info.dart';

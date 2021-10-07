@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:her_work/services/api_firestore.dart';
 import 'package:her_work/widgets/background_wave.dart';
-
 import 'package:reactive_forms/reactive_forms.dart';
+
 import 'form_pages.dart';
 import 'service_forms.dart';
 // import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -30,6 +30,7 @@ class SignupPage extends GetView<SignupController> {
 
   final String title = "Sign Up";
   final ApiService api = Get.find<ApiService>();
+
   // creates a group
   // final form = fb.group({
   //   'name': 'John Doe',
