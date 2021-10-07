@@ -54,12 +54,12 @@ class ApiService extends GetxService {
     return response;
   }
 
-  Future<DocumentReference> postUser(Map data) async {
+  Future<DocumentReference> postUser(Map<String,dynamic> data) async {
     final response = await postDocument(usersCol, data);
     return response;
   }
 
-  Future<DocumentReference> postServices(Map data) async {
+  Future<DocumentReference> postService(Map<String,dynamic> data) async {
     final response = await postDocument(servicesCol, data);
     return response;
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:her_work/services/api_firestore.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ServiceFormController extends GetxController {
@@ -17,6 +18,15 @@ class ServiceFormController extends GetxController {
     "description": "Tasty Homemade Biryani",
     "available": true
   });
+  void postForm(){
+    final api = Get.find<ApiService>();
+    api.postService(
+        {
+          ...serviceForm.value,
+          "offers": [offerForm.value]
+        }
+    );
+  }
 }
 
 class Form2 extends GetView<ServiceFormController> {

@@ -48,7 +48,7 @@ class AddServicePage extends GetView<AddServiceController> {
                       Expanded(
                         child: ElevatedButton.icon(
                             onPressed: () {
-                              // api.callRegistration();
+                              Get.find<ServiceFormController>().postForm();
                               Get.back();
                               Get.snackbar(
                                   "Service added successfully!", "Yay!");
