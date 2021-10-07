@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 // import 'utils.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   final String title = "Home";
 
   @override
@@ -29,9 +29,7 @@ class HomePage extends StatelessWidget {
         // elevation: 3,
       ),
       drawer: Drawer(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-            children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
           TextButton(
             child: const Text("Logout"),
             onPressed: () {
@@ -141,19 +139,19 @@ class HomePage extends StatelessWidget {
                   child: ElevatedButton(
                     child: const Text("View Profile"),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blueAccent,
+                      primary: Colors.greenAccent,
                     ),
                     onPressed: () {
-                      // Get.to(() => const ProfilePage());
+                      Get.toNamed("/profile");
                     },
                   ),
                 ),
                 SizedBox(
                   width: double.maxFinite,
                   child: ElevatedButton(
-                    child: const Text("View Services"),
+                    child: const Text("Explore Services"),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blueAccent,
+                      primary: Colors.pinkAccent,
                     ),
                     onPressed: () {
                       Get.toNamed("/search");

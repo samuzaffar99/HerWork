@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'services/login_api.dart';
-import 'widgets/background_wave.dart';
+import '../../services/login_api.dart';
+import '../../widgets/background_wave.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -29,7 +29,11 @@ class WelcomePage extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text('HerWork', style: TextStyle(fontSize: 36,color: Colors.pinkAccent,letterSpacing: 3)),
+                    const Text('HerWork',
+                        style: TextStyle(
+                            fontSize: 36,
+                            color: Colors.pinkAccent,
+                            letterSpacing: 3)),
                     const SizedBox(height: 24),
                     TextField(
                         keyboardType: TextInputType.phone,

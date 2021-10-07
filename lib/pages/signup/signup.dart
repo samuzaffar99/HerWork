@@ -4,14 +4,9 @@ import 'package:her_work/services/api_firestore.dart';
 import 'package:her_work/widgets/background_wave.dart';
 
 import 'package:reactive_forms/reactive_forms.dart';
-
-import 'forms.dart';
+import 'form_pages.dart';
+import 'service_forms.dart';
 // import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-// import 'package:wave/config.dart';
-// import 'package:wave/wave.dart';
-//
-// import '../../api.dart';
-// import '../dashboard.dart';
 
 class SignupController extends GetxController {
   final PageController pageController = PageController(initialPage: 0);
@@ -20,28 +15,21 @@ class SignupController extends GetxController {
     "contactNum": "03213210123",
     "cnic": "4210191111111",
   });
-  final serviceForm = fb.group({
-    "serviceName": "Chef Raheela",
-    "contactNum": "03213210123",
-    "address": "A-111 G, Block G, North Nazimabad",
-    "email": "raheela.khan@gmail.com",
-    "time": "",
-    "serviceType": "Food",
-  });
-  final offerForm = fb.group({
-    "offerName": "Biryani",
-    "cost": "120",
-    "description": "Tasty Homemade Biryani",
-    "available": true
-  });
 }
 
-class SignupPage extends StatelessWidget {
+class SignupBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => SignupController());
+    Get.lazyPut(() => ServiceFormController());
+  }
+}
+
+class SignupPage extends GetView<SignupController> {
   SignupPage({Key? key}) : super(key: key);
 
   final String title = "Sign Up";
   final ApiService api = Get.find<ApiService>();
-  final SignupController controller = Get.put(SignupController());
   // creates a group
   // final form = fb.group({
   //   'name': 'John Doe',
@@ -71,13 +59,13 @@ class SignupPage extends StatelessWidget {
               controller: controller.pageController,
               children: const <Widget>[
                 Center(
-                  child: Form1(),
+                  child: DetailsPage(),
                 ),
                 Center(
-                  child: Form2(),
+                  child: ServiceDetailsPage(),
                 ),
                 Center(
-                  child: Form3(),
+                  child: ServiceOffersPage(),
                 )
               ],
             ),

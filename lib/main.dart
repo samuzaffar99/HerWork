@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pages/home/home.dart';
+import 'pages/profile/add_service.dart';
+import 'pages/profile/services.dart';
 import 'pages/search/search.dart';
 import 'pages/signup/signup.dart';
 import 'services/api_firestore.dart';
-import 'welcome.dart';
+import 'pages/welcome/welcome.dart';
 
 Future<void> main() async {
   await initializeServices();
@@ -37,12 +39,23 @@ class MyApp extends StatelessWidget {
         //   binding: NavBinding(),
         // ),
         GetPage(name: '/', page: () => WelcomePage()),
-        GetPage(name: '/signup', page: () => SignupPage()),
-        GetPage(name: '/home', page: () => HomePage()),
+        GetPage(
+          name: '/signup',
+          page: () => SignupPage(),
+          binding: SignupBinding(),
+        ),
+        GetPage(name: '/home', page: () => const HomePage()),
         // GetPage(name: '/settings', page: () => SettingsPage()),
-        // GetPage(name: '/profile', page: () => ProfilePage()),
+        GetPage(name: '/profile', page: () => ServicePage()),
         // GetPage(name: '/admin', page: () => AdminPage()),
-        GetPage(name: '/search', page: () => SearchPage(), transition: Transition.leftToRightWithFade),
+        GetPage(
+            name: '/addservice',
+            page: () => AddServicePage(),
+            binding: AddServiceBinding()),
+        GetPage(
+            name: '/search',
+            page: () => SearchPage(),
+            transition: Transition.leftToRightWithFade),
       ],
       theme: ThemeData(
         primarySwatch: Colors.pink,
