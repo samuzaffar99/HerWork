@@ -7,6 +7,7 @@ import 'pages/profile/add_service.dart';
 import 'pages/profile/manage_service.dart';
 import 'pages/profile/services.dart';
 import 'pages/search/search.dart';
+import 'pages/search/service_info.dart';
 import 'pages/signup/signup.dart';
 import 'services/api_firestore.dart';
 import 'pages/welcome/welcome.dart';
@@ -48,6 +49,10 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/home', page: () => const HomePage()),
         // GetPage(name: '/settings', page: () => SettingsPage()),
         GetPage(name: '/profile', page: () => ServicePage()),
+        GetPage(
+            name: '/serviceinfo',
+            page: () => ServiceInfoPage(),
+            binding: ServiceInfoBindings()),
         GetPage(
             name: '/manageservice',
             page: () => ManageServicePage(),
