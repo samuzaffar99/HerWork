@@ -48,7 +48,10 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/home', page: () => const HomePage()),
         // GetPage(name: '/settings', page: () => SettingsPage()),
         GetPage(name: '/profile', page: () => ServicePage()),
-        GetPage(name: '/manageservice', page: () => ManageServicePage()),
+        GetPage(
+            name: '/manageservice',
+            page: () => ManageServicePage(),
+            binding: ManageServiceBindings()),
         // GetPage(name: '/admin', page: () => AdminPage()),
         GetPage(
             name: '/addservice',
