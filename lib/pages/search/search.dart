@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:her_work/services/api_firestore.dart';
 
-import '../../utils.dart';
-
 class SearchController extends GetxController {
   final RxString searchString = "".obs;
   final RxString searchStringDeb = "".obs;
@@ -37,7 +35,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.search),
+        // leading: const Icon(Icons.search),
         title: Text(title, style: const TextStyle(letterSpacing: 3)),
       ),
       body: Padding(
