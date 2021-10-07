@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'pages/home/home.dart';
 import 'pages/profile/add_service.dart';
+import 'pages/profile/manage_service.dart';
 import 'pages/profile/services.dart';
 import 'pages/search/search.dart';
 import 'pages/signup/signup.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/home', page: () => const HomePage()),
         // GetPage(name: '/settings', page: () => SettingsPage()),
         GetPage(name: '/profile', page: () => ServicePage()),
+        GetPage(name: '/manageservice', page: () => ManageServicePage()),
         // GetPage(name: '/admin', page: () => AdminPage()),
         GetPage(
             name: '/addservice',

@@ -93,15 +93,15 @@ class SearchPage extends StatelessWidget {
           return GetX<SearchController>(
             builder: (val) {
               List filteredList = docList
-                  .where((e) =>
-                      e["name"].contains(controller.searchStringDeb.value))
+                  .where((e) => e["serviceName"]
+                      .contains(controller.searchStringDeb.value))
                   .toList();
               print(filteredList);
               return ListView.separated(
                 itemCount: filteredList.length,
                 separatorBuilder: (context, index) => const Divider(),
                 itemBuilder: (context, index) {
-                  Map service = filteredList[index];
+                  final service = filteredList[index];
                   return Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -110,8 +110,8 @@ class SearchPage extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-                          Text(service["name"] ?? ""),
-                          Text(service["description"] ?? ""),
+                          Text(service["serviceName"] ?? ""),
+                          Text(service["serviceType"] ?? ""),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(

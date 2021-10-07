@@ -47,13 +47,92 @@ class ServiceDetailsPage extends StatelessWidget {
   }
 }
 
+class Offers extends GetView<ServiceFormController> {
+  const Offers({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Obx(
+          () => ListView.separated(
+            shrinkWrap: true,
+            itemCount: controller.offersList.length,
+            separatorBuilder: (context, index) => const Divider(),
+            itemBuilder: (context, index) {
+              final offer = controller.offersList[index];
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      Text(offer["offerName"] ?? ""),
+                      Text(offer["cost"] ?? ""),
+                      Text(offer["description"] ?? ""),
+                      // Text(offer["available"] ?? ""),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: ElevatedButton(
+                                  child: const Text("Remove"),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Colors.redAccent),
+                                  onPressed: () {
+                                    controller.offersList.removeAt(index);
+                                  }),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: ElevatedButton.icon(
+                  onPressed: () {
+                    Get.defaultDialog(
+                        title: "Add an Offering",
+                        // backgroundColor: Colors.green,
+                        // titleStyle: const TextStyle(color: Colors.white),
+                        textConfirm: "Confirm",
+                        textCancel: "Cancel",
+                        buttonColor: Colors.pinkAccent,
+                        radius: 50,
+                        content: const Form3(),
+                        onConfirm: () {
+                          controller.offersList.add(controller.offerForm.value);
+                          Get.back();
+                        });
+                  },
+                  label: const Text("Add an Offering"),
+                  icon: const Icon(Icons.add)),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
 class ServiceOffersPage extends StatelessWidget {
   const ServiceOffersPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
       children: const [
-        Form3(),
+        Offers(),
         Spacer(),
         FinishButton(),
       ],

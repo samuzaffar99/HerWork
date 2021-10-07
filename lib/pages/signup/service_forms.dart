@@ -18,14 +18,10 @@ class ServiceFormController extends GetxController {
     "description": "Tasty Homemade Biryani",
     "available": true
   });
-  void postForm(){
+  final RxList offersList = [].obs;
+  void postForm() {
     final api = Get.find<ApiService>();
-    api.postService(
-        {
-          ...serviceForm.value,
-          "offers": [offerForm.value]
-        }
-    );
+    api.postService({...serviceForm.value, "offers": offersList});
   }
 }
 

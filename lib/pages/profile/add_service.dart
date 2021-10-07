@@ -61,7 +61,7 @@ class AddServicePage extends GetView<AddServiceController> {
                 ],
               ),
             ),
-            Center(
+            const Center(
               child: Form3(),
             )
           ],

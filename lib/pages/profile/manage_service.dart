@@ -22,13 +22,13 @@ class SearchController extends GetxController {
   }
 }
 
-class ServicePage extends StatelessWidget {
-  ServicePage({Key? key}) : super(key: key);
+class ManageServicePage extends StatelessWidget {
+  ManageServicePage({Key? key}) : super(key: key);
 
   final ApiService api = Get.find<ApiService>();
   final SearchController controller = Get.put(SearchController());
 
-  final String title = "My Services";
+  final String title = "Manage Services";
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +97,7 @@ class ServicePage extends StatelessWidget {
                                   style: ElevatedButton.styleFrom(
                                       primary: Colors.greenAccent),
                                   onPressed: () {
-                                    Get.toNamed("/manageservice",
+                                    Get.toNamed("/serviceinfo",
                                         arguments: [service]);
                                   }),
                             ),
