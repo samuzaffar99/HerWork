@@ -53,7 +53,7 @@ class MessageButton extends GetView<ServiceInfoController> {
 
   Future<void> message() async {
     final link = WhatsAppUnilink(
-      phoneNumber: '+001-(555)1234567',
+      phoneNumber: controller.service["contactNum"],
       text: "Hey! ${controller.service["serviceName"]}, I would like to know",
     );
     await launch('$link');
