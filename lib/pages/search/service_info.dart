@@ -156,9 +156,10 @@ class ServiceCard extends GetView<ServiceInfoController> {
             return i + el['rating'];
           }) /
           (controller.service["reviews"] as List).length;
-      return sum.toStringAsFixed(1);
+      return sum.toStringAsFixed(1) +
+          " (${controller.service["reviews"].length} Reviews)";
     } else {
-      return "None";
+      return " No Reviews Yet";
     }
   }
 }

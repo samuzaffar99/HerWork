@@ -18,6 +18,7 @@ class VerificationPage extends GetView<VerificationController> {
   final String title = "Verify";
 
   const VerificationPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -96,13 +96,27 @@ class ServiceCard extends GetView<ManageServiceController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(Icons.star),
-                Text("Rating ${controller.service["serviceName"]}"),
+                Text(getRating()),
               ],
             )
           ],
         ),
       ),
     );
+  }
+
+  String getRating() {
+    if ((controller.service.data() as Map).containsKey("reviews") &&
+        controller.service["reviews"].length != 0) {
+      double sum = controller.service["reviews"].fold(0, (i, el) {
+            return i + el['rating'];
+          }) /
+          (controller.service["reviews"] as List).length;
+      return sum.toStringAsFixed(1) +
+          " (${controller.service["reviews"].length} Reviews)";
+    } else {
+      return " No Reviews Yet";
+    }
   }
 }
 
