@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:her_work/pages/signup/service_forms.dart';
 import 'package:her_work/services/api_firestore.dart';
 
+import 'offers_list.dart';
+import 'reviews_list.dart';
+
 class ManageServiceController extends GetxController {
   final service = Get.arguments[0];
 }
@@ -73,8 +76,7 @@ class FloatingAddButton extends GetView<ManageServiceController> {
   }
 }
 
-//@todo view reviews
-//@todo view likes
+//@todo favorites
 class ServiceCard extends GetView<ManageServiceController> {
   const ServiceCard({Key? key}) : super(key: key);
 
@@ -132,101 +134,6 @@ class ServiceTabs extends StatelessWidget {
               ),
             ],
           )),
-    );
-  }
-}
-
-class ReviewsList extends GetView<ManageServiceController> {
-  const ReviewsList({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      itemCount: controller.service["offers"].length,
-      separatorBuilder: (context, index) => const Divider(),
-      itemBuilder: (context, index) {
-        final offer = controller.service["offers"][index];
-        return Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                Text(offer["offerName"] ?? ""),
-                Text(offer["cost"] ?? ""),
-                Text(offer["description"] ?? ""),
-                // Text(offer["available"] ?? ""),
-                Row(
-                  children: [
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: ElevatedButton(
-                          child: const Text("Remove"),
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.redAccent),
-                          onPressed: () {
-                            controller.service["offers"].removeAt(index);
-                            // controller.update();
-                          }),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class OffersList extends GetView<ManageServiceController> {
-  const OffersList({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // print(controller.service);
-    return ListView.separated(
-      shrinkWrap: true,
-      itemCount: controller.service["offers"].length,
-      separatorBuilder: (context, index) => const Divider(),
-      itemBuilder: (context, index) {
-        final offer = controller.service["offers"][index];
-        return Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                Text(offer["offerName"] ?? ""),
-                Text(offer["cost"] ?? ""),
-                Text(offer["description"] ?? ""),
-                // Text(offer["available"] ?? ""),
-                Row(
-                  children: [
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: ElevatedButton(
-                          child: const Text("Remove"),
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.redAccent),
-                          onPressed: () {
-                            controller.service["offers"].removeAt(index);
-                            // controller.update();
-                          }),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }
