@@ -9,6 +9,7 @@ import 'pages/profile/my_services.dart';
 import 'pages/search/search.dart';
 import 'pages/search/service_info.dart';
 import 'pages/signup/signup.dart';
+import 'pages/verification.dart';
 import 'services/api_firestore.dart';
 import 'pages/welcome/welcome.dart';
 
@@ -40,32 +41,48 @@ class MyApp extends StatelessWidget {
         //   page: () => const DashboardPage(),
         //   binding: NavBinding(),
         // ),
-        GetPage(name: '/', page: () => WelcomePage()),
+        GetPage(
+          name: '/',
+          page: () => WelcomePage(),
+        ),
         GetPage(
           name: '/signup',
           page: () => SignupPage(),
           binding: SignupBinding(),
         ),
-        GetPage(name: '/home', page: () => const HomePage()),
+        GetPage(
+          name: '/home',
+          page: () => const HomePage(),
+        ),
         // GetPage(name: '/settings', page: () => SettingsPage()),
-        GetPage(name: '/profile', page: () => ServicePage()),
+        GetPage(
+          name: '/profile',
+          page: () => ServicePage(),
+        ),
         GetPage(
             name: '/serviceinfo',
             page: () => ServiceInfoPage(),
             binding: ServiceInfoBindings()),
         GetPage(
-            name: '/manageservice',
-            page: () => ManageServicePage(),
-            binding: ManageServiceBindings()),
+          name: '/manageservice',
+          page: () => ManageServicePage(),
+          binding: ManageServiceBindings(),
+        ),
         // GetPage(name: '/admin', page: () => AdminPage()),
         GetPage(
-            name: '/addservice',
-            page: () => AddServicePage(),
-            binding: AddServiceBinding()),
+          name: '/addservice',
+          page: () => AddServicePage(),
+          binding: AddServiceBinding(),
+        ),
         GetPage(
             name: '/search',
             page: () => SearchPage(),
             transition: Transition.leftToRightWithFade),
+        GetPage(
+          name: '/verify',
+          page: () => VerificationPage(),
+          binding: VerificationBindings(),
+        ),
       ],
       theme: ThemeData(
         primarySwatch: Colors.pink,

@@ -29,6 +29,12 @@ class ServicePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const SizedBox(height: 20),
+            ElevatedButton(
+                child: const Text("Verify Profile"),
+                style: ElevatedButton.styleFrom(primary: Colors.purpleAccent),
+                onPressed: () {
+                  Get.toNamed("/verify");
+                }),
             const Divider(),
             Expanded(child: myServicesList()),
           ],
