@@ -105,13 +105,14 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(
               width: double.maxFinite,
-              child: ElevatedButton(
-                child: const Text("Visit Website"),
+              child: ElevatedButton.icon(
+                label: const Text("Settings"),
+                icon: const Icon(Icons.settings),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
                 ),
                 onPressed: () {
-                  // Get.toNamed("/profile");
+                  Get.toNamed("/settings");
                 },
               ),
             ),
