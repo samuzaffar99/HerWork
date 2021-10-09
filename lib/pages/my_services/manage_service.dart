@@ -34,8 +34,9 @@ class ManageServicePage extends StatelessWidget {
           children: const <Widget>[
             SizedBox(height: 20),
             ServiceCard(),
-            Divider(),
-            Expanded(child: OffersList()),
+            // Divider(),
+            ServiceTabs(),
+            // Expanded(child: OffersList()),
           ],
         ),
       ),
@@ -44,6 +45,7 @@ class ManageServicePage extends StatelessWidget {
   }
 }
 
+//@todo fix add offering here
 class FloatingAddButton extends GetView<ManageServiceController> {
   const FloatingAddButton({Key? key}) : super(key: key);
 
@@ -71,18 +73,112 @@ class FloatingAddButton extends GetView<ManageServiceController> {
   }
 }
 
+//@todo view reviews
+//@todo view likes
 class ServiceCard extends GetView<ManageServiceController> {
   const ServiceCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        children: [
-          Text(controller.service["serviceName"]),
-          Text(controller.service["serviceName"])
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text(
+              controller.service["serviceName"],
+              textScaleFactor: 2.0,
+            ),
+            Text(controller.service["serviceType"]),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.star),
+                Text("Rating ${controller.service["serviceName"]}"),
+              ],
+            )
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class ServiceTabs extends StatelessWidget {
+  const ServiceTabs({Key? key}) : super(key: key);
+  static const tabList = [
+    Tab(icon: Icon(Icons.home_repair_service), text: "Services"),
+    Tab(icon: Icon(Icons.reviews), text: "Reviews")
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: DefaultTabController(
+          length: tabList.length,
+          child: Column(
+            children: const [
+              TabBar(
+                labelColor: Colors.pink,
+                tabs: tabList,
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    OffersList(),
+                    ReviewsList(),
+                  ],
+                ),
+              ),
+            ],
+          )),
+    );
+  }
+}
+
+class ReviewsList extends GetView<ManageServiceController> {
+  const ReviewsList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      shrinkWrap: true,
+      itemCount: controller.service["offers"].length,
+      separatorBuilder: (context, index) => const Divider(),
+      itemBuilder: (context, index) {
+        final offer = controller.service["offers"][index];
+        return Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                Text(offer["offerName"] ?? ""),
+                Text(offer["cost"] ?? ""),
+                Text(offer["description"] ?? ""),
+                // Text(offer["available"] ?? ""),
+                Row(
+                  children: [
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ElevatedButton(
+                          child: const Text("Remove"),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.redAccent),
+                          onPressed: () {
+                            controller.service["offers"].removeAt(index);
+                            // controller.update();
+                          }),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -92,7 +188,7 @@ class OffersList extends GetView<ManageServiceController> {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.service);
+    // print(controller.service);
     return ListView.separated(
       shrinkWrap: true,
       itemCount: controller.service["offers"].length,

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-// import '../../dashboard.dart';
-// import 'package:intl/intl.dart';
-// import 'utils.dart';
-
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   final String title = "Home";
@@ -43,60 +39,21 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 24),
-            AspectRatio(
-              aspectRatio: 1.7,
-              child: Card(
-                elevation: 5,
-                semanticContainer: true,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4)),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/cardbg2.png"),
-                      // image: AssetImage("assets/cardbg2.jpg"),
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 24.0, horizontal: 12),
-                  child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      Text(
-                        "Tuesday, 5th October",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      Text(
-                        "Syeda Raheela Khan",
-                        textScaleFactor: 1.5,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Divider(),
-                      Text(
-                        "Total Amount",
-                        textScaleFactor: 1.2,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        "\$ 6,142.00",
-                        textScaleFactor: 3,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      // Text("${DateTime.now().day}"),
-                    ],
-                  ),
+            SizedBox(
+              width: double.maxFinite,
+              child: ElevatedButton.icon(
+                label: const Text("Explore Services"),
+                icon: const Icon(Icons.search),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.pinkAccent,
                 ),
+                onPressed: () {
+                  Get.toNamed("/search");
+                },
               ),
             ),
+            const SizedBox(height: 24),
+            const ProfileCard(),
             const Divider(),
             GridView.count(shrinkWrap: true, crossAxisCount: 3,
                 // childAspectRatio:0.8,
@@ -132,35 +89,79 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ]),
-            Column(
-              children: [
-                SizedBox(
-                  width: double.maxFinite,
-                  child: ElevatedButton(
-                    child: const Text("View Profile"),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.greenAccent,
-                    ),
-                    onPressed: () {
-                      Get.toNamed("/profile");
-                    },
-                  ),
+            SizedBox(
+              width: double.maxFinite,
+              child: ElevatedButton(
+                child: const Text("Manage Services"),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.greenAccent,
                 ),
-                SizedBox(
-                  width: double.maxFinite,
-                  child: ElevatedButton(
-                    child: const Text("Explore Services"),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.pinkAccent,
-                    ),
-                    onPressed: () {
-                      Get.toNamed("/search");
-                    },
-                  ),
-                ),
-              ],
+                onPressed: () {
+                  Get.toNamed("/profile");
+                },
+              ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileCard extends StatelessWidget {
+  const ProfileCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 1.7,
+      child: Card(
+        elevation: 5,
+        semanticContainer: true,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/cardbg2.png"),
+              // image: AssetImage("assets/cardbg2.jpg"),
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: const [
+              Text(
+                "Tuesday, 5th October",
+                style: TextStyle(color: Colors.white),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Text(
+                "Syeda Raheela Khan",
+                textScaleFactor: 1.5,
+                style: TextStyle(color: Colors.white),
+              ),
+              Divider(),
+              Text(
+                "Total Amount",
+                textScaleFactor: 1.2,
+                style: TextStyle(color: Colors.white),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Text(
+                "\$ 6,142.00",
+                textScaleFactor: 3,
+                textAlign: TextAlign.left,
+                style: TextStyle(color: Colors.white),
+              ),
+              // Text("${DateTime.now().day}"),
+            ],
+          ),
         ),
       ),
     );

@@ -86,7 +86,7 @@ class StyledOutlinedButtonIcon extends StatelessWidget {
   final Color color;
   final String text;
   final IconData icon;
-  final Function onPressed;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,7 @@ class StyledOutlinedButtonIcon extends StatelessWidget {
       children: [
         Expanded(
           child: OutlinedButton.icon(
-            onPressed: onPressed(),
+            onPressed: onPressed,
             label: Text(text),
             icon: Icon(icon),
           ),
@@ -129,4 +129,15 @@ class StyledOutlinedButtonIcon extends StatelessWidget {
 //       icon: Icon(icon),
 //     ),
 //   );
+// }
+
+// class TestButton extends ElevatedButton{
+//   final Color color;
+//   final String text;
+//   // final IconData icon;
+//   final VoidCallback fun;
+//
+//   TestButton(this.color, this.text, this.fun, {Key? key}) : super(key: key, child:Text(text), onPressed: fun);
+//
+//   // TestButton.icon(this.color, this.text, this.icon, this.fun, {Key? key}) : super.icon(key: key, label:Text(text), icon: IconData(icon), onPressed: fun);
 // }

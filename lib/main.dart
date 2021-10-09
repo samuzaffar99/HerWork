@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'pages/home/home.dart';
 import 'pages/my_services/add_service.dart';
 import 'pages/my_services/manage_service.dart';
-import 'pages/profile/services.dart';
+import 'pages/profile/my_services.dart';
 import 'pages/search/search.dart';
 import 'pages/search/service_info.dart';
 import 'pages/signup/signup.dart';

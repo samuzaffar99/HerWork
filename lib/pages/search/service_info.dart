@@ -37,8 +37,7 @@ class ServiceInfoPage extends StatelessWidget {
             SizedBox(height: 20),
             ServiceCard(),
             Divider(),
-            Expanded(child: OffersList()),
-            Spacer(),
+            ServiceTabs(),
             CallButton(),
             MessageButton(),
           ],
@@ -84,17 +83,63 @@ class CallButton extends GetView<ServiceInfoController> {
   }
 }
 
+class ServiceTabs extends StatelessWidget {
+  const ServiceTabs({Key? key}) : super(key: key);
+  static const tabList = [
+    Tab(icon: Icon(Icons.home_repair_service), text: "Services"),
+    Tab(icon: Icon(Icons.reviews), text: "Reviews")
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: DefaultTabController(
+        length: tabList.length,
+        child: Column(
+          children: const [
+            TabBar(
+              labelColor: Colors.pink,
+              tabs: tabList,
+            ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  OffersList(),
+                  ReviewsList(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class ServiceCard extends GetView<ServiceInfoController> {
   const ServiceCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        children: [
-          Text(controller.service["serviceName"]),
-          Text(controller.service["serviceName"])
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text(
+              controller.service["serviceName"],
+              textScaleFactor: 2.0,
+            ),
+            Text(controller.service["serviceType"]),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.star),
+                Text("Rating ${controller.service["serviceName"]}"),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -105,7 +150,7 @@ class OffersList extends GetView<ServiceInfoController> {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.service);
+    // print(controller.service);
     // @todo filter where available
     return ListView.separated(
       shrinkWrap: true,
@@ -131,5 +176,83 @@ class OffersList extends GetView<ServiceInfoController> {
         );
       },
     );
+  }
+}
+
+class ReviewsList extends GetView<ServiceInfoController> {
+  const ReviewsList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemCount: controller.service["offers"].length,
+            separatorBuilder: (context, index) => const Divider(),
+            itemBuilder: (context, index) {
+              final review = controller.service["offers"][index];
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      Text(review["offerName"] ?? ""),
+                      Text(review["offerName"] ?? ""),
+                      // Row(
+                      //   children: [
+                      //     const SizedBox(width: 12),
+                      //     Expanded(
+                      //       child: ElevatedButton(
+                      //           child: const Text("Remove"),
+                      //           style: ElevatedButton.styleFrom(
+                      //               primary: Colors.redAccent),
+                      //           onPressed: () {
+                      //             controller.service["offers"].removeAt(index);
+                      //             // controller.update();
+                      //           }),
+                      //     ),
+                      //   ],
+                      // ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        ElevatedButton(
+            child: const Text("Leave a Review"),
+            style: ElevatedButton.styleFrom(primary: Colors.purpleAccent),
+            onPressed: () {
+              reviewDialog();
+            }),
+      ],
+    );
+  }
+
+  void reviewDialog() {
+    final reviewController = TextEditingController();
+    Get.defaultDialog(
+        textConfirm: "Submit Review",
+        onConfirm: () {
+          Get.back();
+        },
+        title: "Your Review",
+        content: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            decoration: const InputDecoration(
+              icon: Icon(Icons.person),
+              border: OutlineInputBorder(),
+            ),
+            controller: reviewController,
+            maxLines: 3,
+          ),
+        ));
   }
 }
