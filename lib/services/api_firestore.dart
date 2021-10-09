@@ -97,4 +97,9 @@ class ApiService extends GetxService {
     final response = await delDocument(servicesCol.doc(id));
     return response;
   }
+
+  Future<void> postReview(String id, Map data) async {
+    Future<void> response = putService(id, data);
+    return response;
+  }
 }

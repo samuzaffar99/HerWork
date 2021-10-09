@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
             transition: Transition.leftToRightWithFade),
         GetPage(
           name: '/verify',
-          page: () => VerificationPage(),
+          page: () => const VerificationPage(),
           binding: VerificationBindings(),
         ),
       ],

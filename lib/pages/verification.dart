@@ -13,10 +13,11 @@ class VerificationBindings extends Bindings {
   }
 }
 
+//@todo add verification
 class VerificationPage extends GetView<VerificationController> {
   final String title = "Verify";
 
-  VerificationPage({Key? key}) : super(key: key);
+  const VerificationPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

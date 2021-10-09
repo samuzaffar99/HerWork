@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:her_work/services/api_firestore.dart';
@@ -5,8 +6,10 @@ import 'package:her_work/widgets/buttons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
+import 'review.dart';
+
 class ServiceInfoController extends GetxController {
-  final service = Get.arguments[0];
+  final DocumentSnapshot service = Get.arguments[0];
 }
 
 class ServiceInfoBindings extends Bindings {
@@ -179,6 +182,7 @@ class OffersList extends GetView<ServiceInfoController> {
   }
 }
 
+//@todo update state on review
 class ReviewsList extends GetView<ServiceInfoController> {
   const ReviewsList({Key? key}) : super(key: key);
 
@@ -187,43 +191,30 @@ class ReviewsList extends GetView<ServiceInfoController> {
     return Column(
       children: [
         Expanded(
-          child: ListView.separated(
-            shrinkWrap: true,
-            itemCount: controller.service["offers"].length,
-            separatorBuilder: (context, index) => const Divider(),
-            itemBuilder: (context, index) {
-              final review = controller.service["offers"][index];
-              return Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: <Widget>[
-                      Text(review["offerName"] ?? ""),
-                      Text(review["offerName"] ?? ""),
-                      // Row(
-                      //   children: [
-                      //     const SizedBox(width: 12),
-                      //     Expanded(
-                      //       child: ElevatedButton(
-                      //           child: const Text("Remove"),
-                      //           style: ElevatedButton.styleFrom(
-                      //               primary: Colors.redAccent),
-                      //           onPressed: () {
-                      //             controller.service["offers"].removeAt(index);
-                      //             // controller.update();
-                      //           }),
-                      //     ),
-                      //   ],
-                      // ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
+          child: (controller.service.data() as Map).containsKey("reviews")
+              ? ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: controller.service["reviews"].length,
+                  separatorBuilder: (context, index) => const Divider(),
+                  itemBuilder: (context, index) {
+                    final review = controller.service["reviews"][index];
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(review["reviewer"] ?? ""),
+                            Text(review["message"] ?? ""),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                )
+              : const Center(child: Text("No Reviews Yet")),
         ),
         ElevatedButton(
             child: const Text("Leave a Review"),
@@ -233,26 +224,5 @@ class ReviewsList extends GetView<ServiceInfoController> {
             }),
       ],
     );
-  }
-
-  void reviewDialog() {
-    final reviewController = TextEditingController();
-    Get.defaultDialog(
-        textConfirm: "Submit Review",
-        onConfirm: () {
-          Get.back();
-        },
-        title: "Your Review",
-        content: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextField(
-            decoration: const InputDecoration(
-              icon: Icon(Icons.person),
-              border: OutlineInputBorder(),
-            ),
-            controller: reviewController,
-            maxLines: 3,
-          ),
-        ));
   }
 }

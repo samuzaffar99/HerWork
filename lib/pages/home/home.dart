@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'profile_card.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   final String title = "Home";
@@ -94,74 +96,26 @@ class HomePage extends StatelessWidget {
               child: ElevatedButton(
                 child: const Text("Manage Services"),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.greenAccent,
+                  primary: Colors.purpleAccent,
                 ),
                 onPressed: () {
                   Get.toNamed("/profile");
                 },
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ProfileCard extends StatelessWidget {
-  const ProfileCard({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.7,
-      child: Card(
-        elevation: 5,
-        semanticContainer: true,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/cardbg2.png"),
-              // image: AssetImage("assets/cardbg2.jpg"),
-              fit: BoxFit.fitWidth,
+            SizedBox(
+              width: double.maxFinite,
+              child: ElevatedButton(
+                child: const Text("Visit Website"),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
+                ),
+                onPressed: () {
+                  // Get.toNamed("/profile");
+                },
+              ),
             ),
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12),
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              Text(
-                "Tuesday, 5th October",
-                style: TextStyle(color: Colors.white),
-              ),
-              SizedBox(
-                height: 12,
-              ),
-              Text(
-                "Syeda Raheela Khan",
-                textScaleFactor: 1.5,
-                style: TextStyle(color: Colors.white),
-              ),
-              Divider(),
-              Text(
-                "Total Amount",
-                textScaleFactor: 1.2,
-                style: TextStyle(color: Colors.white),
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Text(
-                "\$ 6,142.00",
-                textScaleFactor: 3,
-                textAlign: TextAlign.left,
-                style: TextStyle(color: Colors.white),
-              ),
-              // Text("${DateTime.now().day}"),
-            ],
-          ),
+          ],
         ),
       ),
     );
