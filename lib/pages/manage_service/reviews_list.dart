@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'manage_service.dart';
+import 'manage_service_page.dart';
 
 class ReviewsList extends GetView<ManageServiceController> {
   const ReviewsList({Key? key}) : super(key: key);

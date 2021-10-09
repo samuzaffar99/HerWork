@@ -77,6 +77,7 @@ class FloatingAddButton extends GetView<ManageServiceController> {
 }
 
 //@todo favorites
+//@todo reuse from serviceinfo
 class ServiceCard extends GetView<ManageServiceController> {
   const ServiceCard({Key? key}) : super(key: key);
 
