@@ -92,14 +92,17 @@ class SearchPage extends StatelessWidget {
           List docList = snapshot.data;
           return GetX<SearchController>(
             builder: (val) {
+              //@todo optimize search?
               List filteredList = docList.where((e) {
-                bool bool1 =
-                    e["serviceName"].toLowerCase().contains(controller.searchStringDeb.value);
+                bool bool1 = e["serviceName"]
+                    .toLowerCase()
+                    .contains(controller.searchStringDeb.value);
                 bool bool2 = false;
                 if (e.data().containsKey("offers") &&
                     (e["offers"] as List).isNotEmpty) {
                   bool2 = (e["offers"] as List).any((map) {
-                    return map["offerName"].toLowerCase()
+                    return map["offerName"]
+                        .toLowerCase()
                         .contains(controller.searchStringDeb.value);
                   });
                 }

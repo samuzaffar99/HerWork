@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'forms.dart';
 import 'service_forms.dart';
-import 'signup.dart';
+import 'signup_page.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({Key? key}) : super(key: key);

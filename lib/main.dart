@@ -2,17 +2,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'pages/home/home.dart';
+import 'pages/home/home_page.dart';
 import 'pages/my_services/add_service.dart';
 import 'pages/my_services/manage_service.dart';
 import 'pages/profile/my_services.dart';
-import 'pages/search/search.dart';
+import 'pages/search/search_page.dart';
 import 'pages/search/service_info.dart';
 import 'pages/settings/settings.dart';
-import 'pages/signup/signup.dart';
-import 'pages/verification.dart';
+import 'pages/signup/signup_page.dart';
+import 'pages/verification/verification_page.dart';
 import 'services/api_firestore.dart';
-import 'pages/welcome/welcome.dart';
+import 'pages/welcome/welcome_page.dart';
 
 Future<void> main() async {
   await initializeServices();

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import 'signup.dart';
+import 'signup_page.dart';
 
 class Form1 extends GetView<SignupController> {
   const Form1({Key? key}) : super(key: key);
