@@ -24,7 +24,7 @@ class FavoritesPage extends StatelessWidget {
     );
   }
 
-  //@todo filter favorites
+  //@todo replace placeholder id
   Widget myServicesList() {
     return FutureBuilder(
       future: api.getServices(),
@@ -38,9 +38,9 @@ class FavoritesPage extends StatelessWidget {
         } else {
           print(snapshot.data);
           List<QueryDocumentSnapshot> docList = snapshot.data;
-          docList.where((doc) {
+          docList = docList.where((doc) {
             return ((doc.data() as Map).containsKey("favorites") &&
-                doc["favorites"]);
+                (doc["favorites"] as List).contains("placeholder_id"));
           }).toList();
           print(docList);
           return ListView.separated(

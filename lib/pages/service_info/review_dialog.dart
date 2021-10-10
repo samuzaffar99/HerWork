@@ -28,7 +28,9 @@ void reviewDialog() {
           data["reviews"] = [review];
         }
         print(data);
-        api.postReview(controller.service.id, data);
+        api
+            .postReview(controller.service.id, data)
+            .then((_) => Get.find<ServiceInfoController>().getService());
         Get.back();
       },
       title: "Your Review",

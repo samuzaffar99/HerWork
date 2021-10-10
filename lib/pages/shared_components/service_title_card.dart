@@ -1,8 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:her_work/services/api_firestore.dart';
 
-//@todo favorites
-//@todo use shared serviceController
+//@todo use shared serviceController with extend
+// class ServiceController extends GetxController{
+//   final QueryDocumentSnapshot service = Get.arguments[0];
+// }
+
 //@todo add images
 class ServiceTitleCard extends StatelessWidget {
   final DocumentSnapshot service;
@@ -16,9 +21,16 @@ class ServiceTitleCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Text(
-              service["serviceName"],
-              textScaleFactor: 1.5,
+            Row(
+              children: [
+                const Spacer(),
+                Text(
+                  service["serviceName"],
+                  textScaleFactor: 1.5,
+                ),
+                const Spacer(),
+                FavoritesButton(service),
+              ],
             ),
             Text(service["serviceType"]),
             Row(
@@ -45,5 +57,46 @@ class ServiceTitleCard extends StatelessWidget {
     } else {
       return " No Reviews Yet";
     }
+  }
+}
+
+//@todo replace placeholder id
+//@todo move logic to controller, add ever worker, states
+class FavoritesButton extends StatelessWidget {
+  final api = Get.find<ApiService>();
+  final DocumentSnapshot service;
+  bool getIsFavorite() {
+    return ((service.data() as Map).containsKey("favorites") &&
+        (service["favorites"] as List).contains("placeholder_id"));
+  }
+
+  Future<void> toggleFavorite() async {
+    final Map data = service.data() as Map;
+    if (data.containsKey("favorites")) {
+      ((data["favorites"] as List).contains("placeholder_id"))
+          ? data["favorites"].add("placeholder_id")
+          : data["favorites"].remove("placeholder_id");
+    }
+    else{
+      data["favorites"]=["placeholder_id"];
+      api.putService(service.id,data);
+    }
+    print(data);
+    isFavorite.value = !isFavorite.value;
+  }
+
+  final RxBool isFavorite = false.obs;
+  FavoritesButton(this.service, {Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    isFavorite.value = getIsFavorite();
+    return Obx(() => IconButton(
+          onPressed: () async {
+            await toggleFavorite();
+          },
+          icon: Icon(isFavorite.value
+              ? Icons.favorite
+              : Icons.favorite_border),
+        ));
   }
 }
