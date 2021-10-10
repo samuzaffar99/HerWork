@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:her_work/services/api_firestore.dart';
@@ -47,44 +48,65 @@ class ServicesList extends GetView<SearchController> {
                 separatorBuilder: (context, index) => const Divider(),
                 itemBuilder: (context, index) {
                   final service = filteredList[index];
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-                          Text(service["serviceName"] ?? ""),
-                          Text(service["serviceType"] ?? ""),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                const SizedBox(width: 12),
-                                Expanded(
-                                  child: ElevatedButton(
-                                      child: const Text("View Service"),
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.greenAccent),
-                                      onPressed: () {
-                                        Get.toNamed("/serviceinfo",
-                                            arguments: [service]);
-                                      }),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
+                  return ServiceResultCard(service);
                 },
               );
             },
           );
         }
       },
+    );
+  }
+}
+
+class ServiceResultCard extends StatelessWidget {
+  final DocumentSnapshot service;
+
+  const ServiceResultCard(this.service, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        side: BorderSide(
+          color: Colors.deepOrange.withOpacity(0.5),
+          width: 1,
+        ),
+      ),
+      // color: Colors.transparent,
+      // elevation: 0,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            const SizedBox(
+              height: 8,
+            ),
+            Text(
+              service["serviceName"] ?? "",
+              textScaleFactor: 1.2,
+            ),
+            Text(service["serviceType"] ?? ""),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                        child: const Text("View Service"),
+                        style: TextButton.styleFrom(
+                            primary: Colors.deepOrangeAccent),
+                        onPressed: () {
+                          Get.toNamed("/serviceinfo", arguments: [service]);
+                        }),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

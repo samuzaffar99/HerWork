@@ -7,6 +7,7 @@ class SettingsPage extends StatelessWidget {
   SettingsPage({Key? key}) : super(key: key);
   final String title = "Settings";
   final List<bool> isSelected = [false];
+  final session = Get.find<Session>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +40,28 @@ class SettingsPage extends StatelessWidget {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
-                final session = Get.find<Session>();
                 session.signOut();
                 Get.offAllNamed("/");
               },
               child: const Text("Logout"),
+              style: ElevatedButton.styleFrom(primary: Colors.redAccent),
+            ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     //@todo remove from production unless role is admin
+            //     // Get.toNamed("/admin");
+            //   },
+            //   child: const Text("Admin"),
+            //   style: ElevatedButton.styleFrom(primary: Colors.red),
+            // ),
+            ElevatedButton(
+              onPressed: () {
+                session.deleteUser();
+                Get.offAllNamed("/");
+              },
+              child: const Text("Deactivate Account"),
               style: ElevatedButton.styleFrom(primary: Colors.red),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  //@todo remove from production unless role is admin
-                  // Get.toNamed("/admin");
-                },
-                child: const Text("Admin")),
             const Spacer(),
             Column(
               children: const [
@@ -72,16 +82,17 @@ class SettingsPage extends StatelessWidget {
                 Text("Mustafa Ali Usmani"),
               ],
             ),
-            ElevatedButton.icon(
-                onPressed: () async {
-                  //@todo add devpost link
-                  await launch('https://devpost.com/software/herwork');
-                },
-                label: const Text("Play Store"),
-                icon: const Icon(Icons.play_arrow_outlined)
-                // style: ElevatedButton.styleFrom(primary: Colors.red),
-                ),
             const SizedBox(height: 12),
+            ElevatedButton.icon(
+              onPressed: () async {
+                //@todo add devpost link
+                await launch('https://devpost.com/software/herwork');
+              },
+              label: const Text("Play Store"),
+              icon: const Icon(Icons.play_arrow_outlined),
+              style: ElevatedButton.styleFrom(primary: Colors.greenAccent),
+            ),
+            const SizedBox(height: 36),
           ],
         ),
       ),

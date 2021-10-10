@@ -2,7 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'pages/analytics_page.dart';
 import 'pages/favorites/favorites_page.dart';
+import 'pages/history_page.dart';
 import 'pages/home/home_page.dart';
 import 'pages/manage_service/manage_service_page.dart';
 import 'pages/my_services/add_service.dart';
@@ -62,20 +64,33 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/settings',
           page: () => SettingsPage(),
+          transition: Transition.cupertino,
+        ),
+        GetPage(
+          name: '/history',
+          page: () => HistoryPage(),
+          transition: Transition.cupertino,
+        ),
+        GetPage(
+          name: '/analytics',
+          page: () => AnalyticsPage(),
+          transition: Transition.cupertino,
         ),
         GetPage(
           name: '/profile',
           page: () => ProfilePage(),
-          transition: Transition.native,
+          transition: Transition.cupertino,
         ),
         GetPage(
           name: '/myservices',
           page: () => ServicePage(),
+          transition: Transition.cupertino,
         ),
         GetPage(
           name: '/serviceinfo',
           page: () => ServiceInfoPage(),
           binding: ServiceInfoBindings(),
+          transition: Transition.cupertino,
         ),
         GetPage(
           name: '/manageservice',
@@ -91,7 +106,7 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/search',
           page: () => SearchPage(),
-          transition: Transition.rightToLeftWithFade,
+          transition: Transition.cupertino,
         ),
         GetPage(
           name: '/verify',

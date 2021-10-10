@@ -31,11 +31,17 @@ class HomePage extends StatelessWidget {
               ],
             ),
             drawer: Drawer(
+              elevation: 0,
+              backgroundColor: Colors.purple.withOpacity(0.6),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  const Divider(),
                   TextButton(
-                    child: const Text("Logout"),
+                    child: const Text(
+                      "Logout",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     onPressed: () {
                       Get.toNamed("/");
                     },

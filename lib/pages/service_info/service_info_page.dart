@@ -39,6 +39,7 @@ class ServiceInfoPage extends GetView<ServiceInfoController> {
     return Scaffold(
       appBar: AppBar(
         title: Text(title, style: const TextStyle(letterSpacing: 3)),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8),

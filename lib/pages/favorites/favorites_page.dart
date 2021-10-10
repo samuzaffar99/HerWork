@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:her_work/pages/my_services/my_services.dart';
+import 'package:her_work/pages/search/services_list.dart';
 import 'package:her_work/services/api_firestore.dart';
 import 'package:her_work/services/notifications.dart';
 import 'package:her_work/services/session.dart';
@@ -19,6 +19,7 @@ class FavoritesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title, style: const TextStyle(letterSpacing: 3)),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8),
@@ -51,7 +52,7 @@ class FavoritesPage extends StatelessWidget {
             separatorBuilder: (context, index) => const Divider(),
             itemBuilder: (context, index) {
               final DocumentSnapshot service = docList[index];
-              return ServiceCard(service);
+              return ServiceResultCard(service);
             },
           );
         }

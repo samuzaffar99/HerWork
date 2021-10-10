@@ -40,13 +40,17 @@ class WelcomePage extends StatelessWidget {
                     //         letterSpacing: 3)),
                     const SizedBox(height: 24),
                     TextField(
-                        keyboardType: TextInputType.phone,
-                        controller: loginController.phoneController,
-                        decoration: const InputDecoration(
-                          labelText: "Phone Number",
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.phone),
-                        )),
+                      keyboardType: TextInputType.phone,
+                      controller: loginController.phoneController,
+                      decoration: const InputDecoration(
+                        labelText: "Phone Number",
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.phone),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Row(
                       children: [
                         Expanded(
@@ -60,28 +64,27 @@ class WelcomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Get.toNamed("/signup");
-                            },
-                            child: const Text("Register"),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: ElevatedButton(
+                    //         onPressed: () {
+                    //           Get.toNamed("/signup");
+                    //         },
+                    //         child: const Text("Register"),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
                 const SizedBox(height: 20),
-                //@todo remove skip to home button once ready (only for avoiding auth)
-                ElevatedButton(
-                  onPressed: () {
-                    Get.offAllNamed('/home');
-                  },
-                  child: const Text("Skip"),
-                ),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     Get.offAllNamed('/home');
+                //   },
+                //   child: const Text("Skip"),
+                // ),
               ],
             ),
           ),

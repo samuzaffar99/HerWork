@@ -41,6 +41,7 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(
         // leading: const Icon(Icons.search),
         title: Text(title, style: const TextStyle(letterSpacing: 3)),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8),

@@ -10,13 +10,13 @@ class BackgroundWave extends StatelessWidget {
     return WaveWidget(
       config: CustomConfig(
         gradients: [
-          [Colors.purple, Colors.purpleAccent],
-          [Colors.deepOrange, Colors.deepOrangeAccent],
-          [Colors.pink[700]!, Colors.pinkAccent],
+          [Colors.purple, Colors.indigo],
+          [Colors.pink, Colors.red],
+          [Colors.deepOrange, Colors.yellow],
         ],
-        durations: [35000, 19440, 10800],
-        heightPercentages: [0.20, 0.3, 0.45],
-        blur: const MaskFilter.blur(BlurStyle.solid, 5),
+        durations: [35000, 19440, 5800],
+        heightPercentages: [0.40, 0.5, 0.7],
+        blur: const MaskFilter.blur(BlurStyle.solid, 2),
         gradientBegin: Alignment.bottomLeft,
         gradientEnd: Alignment.topRight,
       ),

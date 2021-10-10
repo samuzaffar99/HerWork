@@ -88,4 +88,10 @@ class Session extends GetxService {
     await api.putUser(firebaseUser.uid, userData);
     await handleSignIn();
   }
+
+  //Create new user data using firebase uid
+  Future<void> deleteUser() async {
+    await api.delUser(firebaseUser.uid);
+    await firebaseAuth.signOut();
+  }
 }
