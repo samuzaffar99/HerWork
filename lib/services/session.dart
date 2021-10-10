@@ -40,7 +40,7 @@ class Session extends GetxService {
       if (existsUser) {
         Get.offAllNamed('/home');
       } else {
-        Get.toNamed('/setup');
+        Get.toNamed('/signup');
       }
     } catch (err) {
       print(err);

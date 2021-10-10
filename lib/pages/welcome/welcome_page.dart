@@ -109,11 +109,12 @@ class WelcomePage extends StatelessWidget {
           obscureText: false,
           animationType: AnimationType.fade,
           animationDuration: const Duration(milliseconds: 300),
-          controller: loginController.codeController,
+          // controller: loginController.codeController,
           onChanged: (_) {},
-          onCompleted: (_) {
-            loginController.confirmCode();
+          onCompleted: (value) {
+            loginController.codeController.text=value;
             Get.back();
+            loginController.confirmCode();
           },
         ),
       ),
