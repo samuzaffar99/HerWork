@@ -112,7 +112,7 @@ class WelcomePage extends StatelessWidget {
           // controller: loginController.codeController,
           onChanged: (_) {},
           onCompleted: (value) {
-            loginController.codeController.text=value;
+            loginController.codeController.text = value;
             Get.back();
             loginController.confirmCode();
           },

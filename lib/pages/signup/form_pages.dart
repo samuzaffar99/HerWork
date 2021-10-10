@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:her_work/services/session.dart';
 
 import 'forms.dart';
 import 'service_forms.dart';
@@ -20,9 +21,10 @@ class DetailsPage extends StatelessWidget {
             Expanded(
               child: ElevatedButton.icon(
                   onPressed: () {
-                    // controller.pageController.nextPage(
-                    //     duration: const Duration(milliseconds: 300),
-                    //     curve: Curves.easeIn);
+                    Get.snackbar("Account Registration Successful!", "Yay!");
+                    Session session = Get.find<Session>();
+                    session.createUser(
+                        Get.find<SignupController>().detailsForm.value);
                   },
                   label: const Text("Complete"),
                   icon: const Icon(Icons.navigate_next)),
@@ -175,9 +177,11 @@ class FinishButton extends GetView<SignupController> {
         Expanded(
           child: ElevatedButton.icon(
               onPressed: () {
-                // api.callRegistration();
                 Get.snackbar("Account Registration Successful!", "Yay!");
-                Get.offAllNamed("/home");
+                Session session = Get.find<Session>();
+                Get.find<ServiceFormController>().postForm();
+                session
+                    .createUser(Get.find<SignupController>().detailsForm.value);
               },
               label: const Text("Create an Account"),
               icon: const Icon(Icons.check_circle)),
@@ -201,7 +205,7 @@ class ProceedButton extends GetView<SignupController> {
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.easeIn);
               },
-              label: const Text("Proceed"),
+              label: const Text("Proceed to Add Service"),
               icon: const Icon(Icons.arrow_forward)),
         ),
       ],

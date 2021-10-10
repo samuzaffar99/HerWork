@@ -88,6 +88,6 @@ class Session extends GetxService {
   //Create new user data using firebase uid
   Future<void> createUser(Map userData) async {
     await api.putUser(firebaseUser.uid, userData);
-    return;
+    await handleSignIn();
   }
 }

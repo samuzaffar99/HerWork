@@ -33,7 +33,7 @@ class Form1 extends GetView<SignupController> {
             decoration: const InputDecoration(
               icon: Icon(Icons.phone),
               border: OutlineInputBorder(),
-              labelText: "Phone Number",
+              labelText: "Contact Number",
             ),
             keyboardType: TextInputType.phone,
           ),
