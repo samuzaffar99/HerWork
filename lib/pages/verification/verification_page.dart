@@ -26,6 +26,18 @@ class VerificationPage extends GetView<VerificationController> {
         title: Text(title, style: const TextStyle(letterSpacing: 3)),
         centerTitle: true,
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text("Upload CNIC"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

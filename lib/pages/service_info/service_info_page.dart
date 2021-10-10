@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:her_work/pages/shared_components/service_title_card.dart';
 import 'package:her_work/services/api_firestore.dart';
@@ -10,7 +11,7 @@ import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 import 'review_dialog.dart';
 
 class ServiceInfoController extends GetxController {
-  final ApiService api= Get.find<ApiService>();
+  final ApiService api = Get.find<ApiService>();
   DocumentSnapshot service = Get.arguments[0];
   Future<void> getService() async {
     service = await api.getService(service.id);
@@ -132,13 +133,14 @@ class OffersList extends GetView<ServiceInfoController> {
   @override
   Widget build(BuildContext context) {
     // print(controller.service);
-    // @todo filter where available
+    final List offers = controller.service["offers"];
+    offers.retainWhere((elem) => elem["available"]);
     return ListView.separated(
       shrinkWrap: true,
-      itemCount: controller.service["offers"].length,
+      itemCount: offers.length,
       separatorBuilder: (context, index) => const Divider(),
       itemBuilder: (context, index) {
-        final offer = controller.service["offers"][index];
+        final Map offer = offers[index];
         return Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -161,6 +163,7 @@ class OffersList extends GetView<ServiceInfoController> {
 }
 
 //@todo update state on review
+//@todo share list with manage
 class ReviewsList extends GetView<ServiceInfoController> {
   const ReviewsList({Key? key}) : super(key: key);
 
@@ -176,6 +179,7 @@ class ReviewsList extends GetView<ServiceInfoController> {
                   separatorBuilder: (context, index) => const Divider(),
                   itemBuilder: (context, index) {
                     final review = controller.service["reviews"][index];
+                    print(review);
                     return Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
@@ -186,6 +190,22 @@ class ReviewsList extends GetView<ServiceInfoController> {
                           children: <Widget>[
                             Text(review["reviewer"] ?? ""),
                             Text(review["message"] ?? ""),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(review["rating"].toStringAsFixed(1)),
+                                RatingBarIndicator(
+                                  rating: review["rating"].toDouble(),
+                                  itemBuilder: (context, index) => const Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  itemCount: 5,
+                                  itemSize: 20.0,
+                                  direction: Axis.horizontal,
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
