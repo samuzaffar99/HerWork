@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:her_work/services/session.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatelessWidget {
   SettingsPage({Key? key}) : super(key: key);
@@ -72,8 +73,9 @@ class SettingsPage extends StatelessWidget {
               ],
             ),
             ElevatedButton.icon(
-                onPressed: () {
+                onPressed: () async {
                   //@todo add devpost link
+                  await launch('https://devpost.com/software/herwork');
                 },
                 label: const Text("Play Store"),
                 icon: const Icon(Icons.play_arrow_outlined)
