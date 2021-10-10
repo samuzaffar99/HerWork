@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:her_work/pages/my_services/my_services.dart';
 import 'package:her_work/services/api_firestore.dart';
+import 'package:her_work/services/notifications.dart';
 
 class FavoritesPage extends StatelessWidget {
   FavoritesPage({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    callNotification();
     return Scaffold(
       appBar: AppBar(
         title: Text(title, style: const TextStyle(letterSpacing: 3)),

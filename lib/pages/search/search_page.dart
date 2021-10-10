@@ -18,6 +18,7 @@ class SearchController extends GetxController {
   @override
   onInit() {
     super.onInit();
+    //@todo better debounce
     debounce(searchString, (_) {
       searchStringDeb.value = searchString.value.toLowerCase();
       // print("debounce ${searchStringDeb.value} ${searchString.value}");
@@ -55,21 +56,20 @@ class SearchPage extends StatelessWidget {
                       controller.updateSearch(newSearchString);
                       // print(newSearchString);
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Search',
-                      suffixIcon: const Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(width: 3, color: Colors.blue),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
+                      suffixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(),
                     ),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 20),
-            const Text("All Services"),
+            const Text(
+              "Search Results",
+              textScaleFactor: 1.2,
+            ),
             const Divider(),
             Expanded(child: ServicesList()),
           ],

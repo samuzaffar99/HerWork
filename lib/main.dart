@@ -57,19 +57,24 @@ class MyApp extends StatelessWidget {
           name: '/home',
           page: () => const HomePage(),
         ),
-        GetPage(name: '/settings', page: () => SettingsPage()),
+        GetPage(
+          name: '/settings',
+          page: () => SettingsPage(),
+        ),
         GetPage(
           name: '/profile',
           page: () => ProfilePage(),
+          transition: Transition.native,
         ),
         GetPage(
           name: '/myservices',
           page: () => ServicePage(),
         ),
         GetPage(
-            name: '/serviceinfo',
-            page: () => ServiceInfoPage(),
-            binding: ServiceInfoBindings()),
+          name: '/serviceinfo',
+          page: () => ServiceInfoPage(),
+          binding: ServiceInfoBindings(),
+        ),
         GetPage(
           name: '/manageservice',
           page: () => ManageServicePage(),
@@ -82,9 +87,10 @@ class MyApp extends StatelessWidget {
           binding: AddServiceBinding(),
         ),
         GetPage(
-            name: '/search',
-            page: () => SearchPage(),
-            transition: Transition.leftToRightWithFade),
+          name: '/search',
+          page: () => SearchPage(),
+          transition: Transition.rightToLeftWithFade,
+        ),
         GetPage(
           name: '/verify',
           page: () => const VerificationPage(),

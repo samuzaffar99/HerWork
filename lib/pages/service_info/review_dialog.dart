@@ -5,7 +5,7 @@ import 'package:her_work/services/api_firestore.dart';
 
 import 'service_info_page.dart';
 
-//@todo add review id
+//@todo add reviewer id
 void reviewDialog() {
   final api = Get.find<ApiService>();
   final reviewController = TextEditingController();
@@ -15,7 +15,7 @@ void reviewDialog() {
       textConfirm: "Submit Review",
       onConfirm: () {
         Map review = {
-          "reviewer": "",
+          "reviewer": "placeholder_id",
           "dateTime": DateTime.now(),
           "rating": myRating,
           "message": reviewController.text,

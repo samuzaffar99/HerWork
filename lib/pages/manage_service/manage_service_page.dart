@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:her_work/pages/shared_components/service_title_card.dart';
@@ -8,7 +9,7 @@ import 'offers_list.dart';
 import 'reviews_list.dart';
 
 class ManageServiceController extends GetxController {
-  final service = Get.arguments[0];
+  final DocumentSnapshot service = Get.arguments[0];
 }
 
 class ManageServiceBindings extends Bindings {
@@ -49,7 +50,7 @@ class ManageServicePage extends GetView<ManageServiceController> {
   }
 }
 
-//@todo fix add offering here
+//@todo fix serviceformcontroller not being removed, update state
 class FloatingAddButton extends GetView<ManageServiceController> {
   const FloatingAddButton({Key? key}) : super(key: key);
 
@@ -57,6 +58,8 @@ class FloatingAddButton extends GetView<ManageServiceController> {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
+        final serviceFormController = Get.put(ServiceFormController());
+        final api = Get.find<ApiService>();
         Get.defaultDialog(
             title: "Add an Offering",
             // backgroundColor: Colors.green,
@@ -67,7 +70,9 @@ class FloatingAddButton extends GetView<ManageServiceController> {
             radius: 50,
             content: const Form3(),
             onConfirm: () {
-              controller.service["offers"].add(controller.service.value);
+              final Map data = controller.service.data() as Map;
+              data["offers"].add(serviceFormController.offerForm.value);
+              api.putService(controller.service.id, data);
               Get.back();
             });
       },

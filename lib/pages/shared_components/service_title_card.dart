@@ -65,6 +65,7 @@ class ServiceTitleCard extends StatelessWidget {
 class FavoritesButton extends StatelessWidget {
   final api = Get.find<ApiService>();
   final DocumentSnapshot service;
+
   bool getIsFavorite() {
     return ((service.data() as Map).containsKey("favorites") &&
         (service["favorites"] as List).contains("placeholder_id"));
@@ -74,19 +75,20 @@ class FavoritesButton extends StatelessWidget {
     final Map data = service.data() as Map;
     if (data.containsKey("favorites")) {
       ((data["favorites"] as List).contains("placeholder_id"))
-          ? data["favorites"].add("placeholder_id")
-          : data["favorites"].remove("placeholder_id");
-    }
-    else{
-      data["favorites"]=["placeholder_id"];
-      api.putService(service.id,data);
+          ? data["favorites"].remove("placeholder_id")
+          : data["favorites"].add("placeholder_id");
+    } else {
+      data["favorites"] = ["placeholder_id"];
     }
     print(data);
+    api.putService(service.id, data);
     isFavorite.value = !isFavorite.value;
   }
 
   final RxBool isFavorite = false.obs;
+
   FavoritesButton(this.service, {Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     isFavorite.value = getIsFavorite();
@@ -94,9 +96,7 @@ class FavoritesButton extends StatelessWidget {
           onPressed: () async {
             await toggleFavorite();
           },
-          icon: Icon(isFavorite.value
-              ? Icons.favorite
-              : Icons.favorite_border),
+          icon: Icon(isFavorite.value ? Icons.favorite : Icons.favorite_border),
         ));
   }
 }

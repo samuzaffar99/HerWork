@@ -13,6 +13,7 @@ import 'review_dialog.dart';
 class ServiceInfoController extends GetxController {
   final ApiService api = Get.find<ApiService>();
   DocumentSnapshot service = Get.arguments[0];
+
   Future<void> getService() async {
     service = await api.getService(service.id);
     update();
