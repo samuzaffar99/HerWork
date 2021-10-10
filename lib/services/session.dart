@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 
 import 'api_firestore.dart';
 
-//@todo manage session state
-
 class Session extends GetxService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   User firebaseUser = FirebaseAuth.instance.currentUser!;

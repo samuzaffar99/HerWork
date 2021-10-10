@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:her_work/services/api_firestore.dart';
+import 'package:her_work/services/session.dart';
 
 import 'service_info_page.dart';
 
-//@todo add reviewer id
 void reviewDialog() {
   final api = Get.find<ApiService>();
   final reviewController = TextEditingController();
@@ -14,8 +14,10 @@ void reviewDialog() {
   Get.defaultDialog(
       textConfirm: "Submit Review",
       onConfirm: () {
+        final session = Get.find<Session>();
+
         Map review = {
-          "reviewer": "placeholder_id",
+          "reviewer": session.firebaseUser.uid,
           "dateTime": DateTime.now(),
           "rating": myRating,
           "message": reviewController.text,

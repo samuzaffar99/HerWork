@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:her_work/services/session.dart';
 
 class SettingsPage extends StatelessWidget {
   SettingsPage({Key? key}) : super(key: key);
@@ -37,7 +38,8 @@ class SettingsPage extends StatelessWidget {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
-                //@todo call signout functionality
+                final session = Get.find<Session>();
+                session.signOut();
                 Get.offAllNamed("/");
               },
               child: const Text("Logout"),

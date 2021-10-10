@@ -28,7 +28,7 @@ class ProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               const SizedBox(height: 20),
-              const ProfileCard(),
+              ProfileCard(),
               ElevatedButton(
                   child: const Text("Verify Profile"),
                   style: ElevatedButton.styleFrom(primary: Colors.purpleAccent),

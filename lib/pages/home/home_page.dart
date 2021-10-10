@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 24),
-                  const ProfileCard(),
+                  ProfileCard(),
                   const Divider(),
                   const HomeGrid(),
                   ElevatedButton.icon(

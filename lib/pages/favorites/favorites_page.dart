@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:her_work/pages/my_services/my_services.dart';
 import 'package:her_work/services/api_firestore.dart';
 import 'package:her_work/services/notifications.dart';
+import 'package:her_work/services/session.dart';
 
 class FavoritesPage extends StatelessWidget {
   FavoritesPage({Key? key}) : super(key: key);
@@ -26,8 +27,8 @@ class FavoritesPage extends StatelessWidget {
     );
   }
 
-  //@todo replace placeholder id
   Widget myServicesList() {
+    final session = Get.find<Session>();
     return FutureBuilder(
       future: api.getServices(),
       builder: (buildContext, AsyncSnapshot snapshot) {
@@ -42,7 +43,7 @@ class FavoritesPage extends StatelessWidget {
           List<QueryDocumentSnapshot> docList = snapshot.data;
           docList = docList.where((doc) {
             return ((doc.data() as Map).containsKey("favorites") &&
-                (doc["favorites"] as List).contains("placeholder_id"));
+                (doc["favorites"] as List).contains(session.firebaseUser.uid));
           }).toList();
           print(docList);
           return ListView.separated(

@@ -7,7 +7,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../widgets/background_wave.dart';
 
-//@todo otp dialog
 class WelcomePage extends StatelessWidget {
   WelcomePage({Key? key}) : super(key: key);
 

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:her_work/services/api_firestore.dart';
+import 'package:her_work/services/session.dart';
 
 //@todo use shared serviceController with extend
 // class ServiceController extends GetxController{
@@ -60,25 +61,25 @@ class ServiceTitleCard extends StatelessWidget {
   }
 }
 
-//@todo replace placeholder id
 //@todo move logic to controller, add ever worker, states
 class FavoritesButton extends StatelessWidget {
   final api = Get.find<ApiService>();
   final DocumentSnapshot service;
+  final session = Get.find<Session>();
 
   bool getIsFavorite() {
     return ((service.data() as Map).containsKey("favorites") &&
-        (service["favorites"] as List).contains("placeholder_id"));
+        (service["favorites"] as List).contains(session.firebaseUser.uid));
   }
 
   Future<void> toggleFavorite() async {
     final Map data = service.data() as Map;
     if (data.containsKey("favorites")) {
-      ((data["favorites"] as List).contains("placeholder_id"))
-          ? data["favorites"].remove("placeholder_id")
-          : data["favorites"].add("placeholder_id");
+      ((data["favorites"] as List).contains(session.firebaseUser.uid))
+          ? data["favorites"].remove(session.firebaseUser.uid)
+          : data["favorites"].add(session.firebaseUser.uid);
     } else {
-      data["favorites"] = ["placeholder_id"];
+      data["favorites"] = [session.firebaseUser.uid];
     }
     print(data);
     api.putService(service.id, data);

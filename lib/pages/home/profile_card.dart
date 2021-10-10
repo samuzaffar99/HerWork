@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:her_work/services/session.dart';
 
 class ProfileCard extends StatelessWidget {
-  const ProfileCard({Key? key}) : super(key: key);
+  ProfileCard({Key? key}) : super(key: key);
+  final session = Get.find<Session>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,36 +19,36 @@ class ProfileCard extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/cardbg2.png"),
-              // image: AssetImage("assets/cardbg2.jpg"),
               fit: BoxFit.fitWidth,
             ),
           ),
           padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              Text(
-                "Tuesday, 5th October",
+            children: [
+              //@todo get current date and format
+              const Text(
+                "Sunday, 10th October",
                 style: TextStyle(color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Text(
-                "Syeda Raheela Khan",
+                session.userData["name"],
                 textScaleFactor: 1.5,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              Divider(),
-              Text(
+              const Divider(),
+              const Text(
                 "Total Earnings",
                 textScaleFactor: 1.2,
                 style: TextStyle(color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
-              Text(
+              const Text(
                 " 6,142 Rs.",
                 textScaleFactor: 3,
                 textAlign: TextAlign.left,
