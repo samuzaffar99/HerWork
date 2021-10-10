@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:her_work/services/api_firestore.dart';
+import 'package:her_work/services/session.dart';
 
 class ServicePage extends StatelessWidget {
   ServicePage({Key? key}) : super(key: key);
 
   final ApiService api = Get.find<ApiService>();
-
+  final session = Get.find<Session>();
   final String title = "My Services";
 
   @override
@@ -48,7 +49,9 @@ class ServicePage extends StatelessWidget {
           );
         } else {
           print(snapshot.data);
-          List docList = snapshot.data;
+          final List docList = snapshot.data;
+          docList.retainWhere((elem) => (elem.data().containsKey("ownerId") &&
+              elem["ownerId"] == session.firebaseUser.uid));
           print(docList);
           return ListView.separated(
             itemCount: docList.length,

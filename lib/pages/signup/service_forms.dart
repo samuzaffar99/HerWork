@@ -12,6 +12,7 @@ class ServiceFormController extends GetxController {
     "address": "A-111 G, Block G, North Nazimabad",
     "email": "raheela.khan@gmail.com",
     "serviceType": "Food",
+    "ownerId": "placeholder_id",
   });
   final offerForm = fb.group({
     "offerName": "Biryani",
