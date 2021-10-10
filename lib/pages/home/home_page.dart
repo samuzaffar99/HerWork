@@ -13,7 +13,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // BackgroundGradient2(),
         BackgroundGradient2(
           child: Scaffold(
             resizeToAvoidBottomInset: false,

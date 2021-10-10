@@ -13,8 +13,9 @@ import 'pages/service_info/service_info_page.dart';
 import 'pages/settings/settings_page.dart';
 import 'pages/signup/signup_page.dart';
 import 'pages/verification/verification_page.dart';
-import 'services/api_firestore.dart';
 import 'pages/welcome/welcome_page.dart';
+import 'services/api_firestore.dart';
+import 'services/session.dart';
 
 Future<void> main() async {
   await initializeServices();
@@ -25,6 +26,7 @@ Future<void> initializeServices() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Get.put(ApiService());
+  Get.put(Session());
   // await Get.putAsync(() => ApiService().init());
   // await Get.putAsync(SettingsService()).init();
   return;

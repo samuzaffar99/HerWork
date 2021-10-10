@@ -26,6 +26,7 @@ class SearchController extends GetxController {
   }
 }
 
+//@todo add filterchips
 class SearchPage extends StatelessWidget {
   final ApiService api = Get.find<ApiService>();
 

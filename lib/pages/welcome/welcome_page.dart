@@ -2,15 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:her_work/services/phone_login.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../services/login_api.dart';
 import '../../widgets/background_wave.dart';
 
+//@todo otp dialog
 class WelcomePage extends StatelessWidget {
   WelcomePage({Key? key}) : super(key: key);
 
-  final LoginController loginController = Get.put(LoginController());
+  final PhoneLogin loginController = Get.put(PhoneLogin());
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +30,15 @@ class WelcomePage extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text('HerWork',
-                        style: TextStyle(
-                            fontSize: 36,
-                            color: Colors.pinkAccent,
-                            letterSpacing: 3)),
+                    const Image(
+                      image: AssetImage('assets/logo2.png'),
+                      width: 180,
+                    ),
+                    // const Text('HerWork',
+                    //     style: TextStyle(
+                    //         fontSize: 36,
+                    //         color: Colors.pinkAccent,
+                    //         letterSpacing: 3)),
                     const SizedBox(height: 24),
                     TextField(
                         keyboardType: TextInputType.phone,
@@ -49,26 +54,12 @@ class WelcomePage extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {
                               loginController.verifyPhoneNumber();
+                              inputOTP(context);
                             },
                             child: const Text("Send Verification Code"),
                           ),
                         ),
                       ],
-                    ),
-                    PinCodeTextField(
-                      appContext: context,
-                      length: 6,
-                      obscureText: false,
-                      animationType: AnimationType.fade,
-                      animationDuration: const Duration(milliseconds: 300),
-                      controller: loginController.codeController,
-                      onChanged: (_) {},
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        loginController.confirmCode();
-                      },
-                      child: const Text("Verify"),
                     ),
                     Row(
                       children: [
@@ -96,6 +87,35 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Future inputOTP(BuildContext context) {
+    return Get.defaultDialog(
+      title: "Enter OTP",
+      content: Padding(
+        padding: const EdgeInsets.all(4),
+        child: PinCodeTextField(
+          appContext: context,
+          pinTheme: PinTheme(
+            shape: PinCodeFieldShape.box,
+            borderRadius: BorderRadius.circular(5),
+            fieldHeight: 50,
+            fieldWidth: 40,
+            activeFillColor: Colors.white,
+          ),
+          length: 6,
+          obscureText: false,
+          animationType: AnimationType.fade,
+          animationDuration: const Duration(milliseconds: 300),
+          controller: loginController.codeController,
+          onChanged: (_) {},
+          onCompleted: (_) {
+            loginController.confirmCode();
+            Get.back();
+          },
+        ),
       ),
     );
   }
