@@ -51,7 +51,7 @@ class ServicePage extends StatelessWidget {
           print(snapshot.data);
           final List docList = snapshot.data;
           docList.retainWhere((elem) => (elem.data().containsKey("ownerId") &&
-              elem["ownerId"] == session.firebaseUser.uid));
+              elem["ownerId"] == session.firebaseUser?.uid));
           print(docList);
           return ListView.separated(
             itemCount: docList.length,

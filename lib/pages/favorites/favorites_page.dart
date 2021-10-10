@@ -44,7 +44,7 @@ class FavoritesPage extends StatelessWidget {
           List<QueryDocumentSnapshot> docList = snapshot.data;
           docList = docList.where((doc) {
             return ((doc.data() as Map).containsKey("favorites") &&
-                (doc["favorites"] as List).contains(session.firebaseUser.uid));
+                (doc["favorites"] as List).contains(session.firebaseUser?.uid));
           }).toList();
           print(docList);
           return ListView.separated(

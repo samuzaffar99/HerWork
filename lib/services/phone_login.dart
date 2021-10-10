@@ -97,7 +97,7 @@ class PhoneLogin extends GetxController {
       session.firebaseUser =
           (await session.firebaseAuth.signInWithCredential(credential)).user!;
       Get.snackbar(
-          "Success", 'Successfully signed in UID: ${session.firebaseUser.uid}');
+          "Success", 'Successfully signed in UID: ${session.firebaseUser?.uid}');
       session.handleSignIn();
     } catch (e) {
       print(e);

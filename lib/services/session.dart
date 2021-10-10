@@ -6,7 +6,7 @@ import 'api_firestore.dart';
 
 class Session extends GetxService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  User firebaseUser = FirebaseAuth.instance.currentUser!;
+  User? firebaseUser = FirebaseAuth.instance.currentUser;
 
   FirebaseFirestore db = FirebaseFirestore.instance;
   late DocumentReference userRef;
@@ -18,7 +18,7 @@ class Session extends GetxService {
   RxBool isLoggedIn = false.obs;
 
   // void initState() {
-  //   isSignedIn();
+    // isSignedIn();
   // }
   //
   // void isSignedIn() async {
@@ -49,8 +49,8 @@ class Session extends GetxService {
 
   Future<void> fetchUser() async {
     print("fetchUser");
-    userRef = db.collection("users").doc(firebaseUser.uid);
-    userData = await api.getUser(firebaseUser.uid);
+    userRef = db.collection("users").doc(firebaseUser?.uid);
+    userData = await api.getUser(firebaseUser!.uid);
   }
 
   Future<bool> initializeUser() async {
@@ -85,13 +85,13 @@ class Session extends GetxService {
 
   //Create new user data using firebase uid
   Future<void> createUser(Map userData) async {
-    await api.putUser(firebaseUser.uid, userData);
+    await api.putUser(firebaseUser!.uid, userData);
     await handleSignIn();
   }
 
   //Create new user data using firebase uid
   Future<void> deleteUser() async {
-    await api.delUser(firebaseUser.uid);
+    await api.delUser(firebaseUser!.uid);
     await firebaseAuth.signOut();
   }
 }

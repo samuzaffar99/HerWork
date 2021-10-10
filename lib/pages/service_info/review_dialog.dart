@@ -17,7 +17,7 @@ void reviewDialog() {
         final session = Get.find<Session>();
 
         Map review = {
-          "reviewer": session.firebaseUser.uid,
+          "reviewer": session.firebaseUser?.uid,
           "dateTime": DateTime.now(),
           "rating": myRating,
           "message": reviewController.text,

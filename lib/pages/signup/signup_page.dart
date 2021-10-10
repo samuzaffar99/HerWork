@@ -23,7 +23,7 @@ class SignupController extends GetxController {
     super.onInit();
     detailsForm.patchValue({
       // "name": session.firebaseUser.displayName,
-      "contactNum": session.firebaseUser.phoneNumber,
+      "contactNum": session.firebaseUser?.phoneNumber,
     });
   }
 }

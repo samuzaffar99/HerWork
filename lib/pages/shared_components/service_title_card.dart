@@ -69,17 +69,17 @@ class FavoritesButton extends StatelessWidget {
 
   bool getIsFavorite() {
     return ((service.data() as Map).containsKey("favorites") &&
-        (service["favorites"] as List).contains(session.firebaseUser.uid));
+        (service["favorites"] as List).contains(session.firebaseUser?.uid));
   }
 
   Future<void> toggleFavorite() async {
     final Map data = service.data() as Map;
     if (data.containsKey("favorites")) {
-      ((data["favorites"] as List).contains(session.firebaseUser.uid))
-          ? data["favorites"].remove(session.firebaseUser.uid)
-          : data["favorites"].add(session.firebaseUser.uid);
+      ((data["favorites"] as List).contains(session.firebaseUser?.uid))
+          ? data["favorites"].remove(session.firebaseUser?.uid)
+          : data["favorites"].add(session.firebaseUser?.uid);
     } else {
-      data["favorites"] = [session.firebaseUser.uid];
+      data["favorites"] = [session.firebaseUser?.uid];
     }
     print(data);
     api.putService(service.id, data);

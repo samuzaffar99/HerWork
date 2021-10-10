@@ -26,8 +26,8 @@ class ServiceFormController extends GetxController {
   void onInit() {
     super.onInit();
     serviceForm.patchValue({
-      "contactNum": session.firebaseUser.phoneNumber,
-      "ownerId": session.firebaseUser.uid,
+      "contactNum": session.firebaseUser?.phoneNumber,
+      "ownerId": session.firebaseUser?.uid,
       // "email": session.firebaseUser.email,
     });
   }
