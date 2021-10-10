@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:her_work/pages/shared_components/service_title_card.dart';
 import 'package:her_work/services/api_firestore.dart';
 import 'package:her_work/widgets/buttons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
 import 'review_dialog.dart';
-import 'service_card.dart';
 
 class ServiceInfoController extends GetxController {
   final DocumentSnapshot service = Get.arguments[0];
@@ -20,7 +20,7 @@ class ServiceInfoBindings extends Bindings {
   }
 }
 
-class ServiceInfoPage extends StatelessWidget {
+class ServiceInfoPage extends GetView<ServiceInfoController> {
   ServiceInfoPage({Key? key}) : super(key: key);
 
   final ApiService api = Get.find<ApiService>();
@@ -37,13 +37,13 @@ class ServiceInfoPage extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            SizedBox(height: 20),
-            ServiceCard(),
-            Divider(),
-            ServiceTabs(),
-            CallButton(),
-            MessageButton(),
+          children: <Widget>[
+            const SizedBox(height: 20),
+            ServiceTitleCard(controller.service),
+            const Divider(),
+            const ServiceTabs(),
+            const CallButton(),
+            const MessageButton(),
           ],
         ),
       ),
@@ -51,7 +51,6 @@ class ServiceInfoPage extends StatelessWidget {
   }
 }
 
-//@todo add favorites button
 //@todo add logs
 class MessageButton extends GetView<ServiceInfoController> {
   const MessageButton({Key? key}) : super(key: key);

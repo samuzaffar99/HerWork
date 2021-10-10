@@ -2,13 +2,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'pages/favorites/favorites_page.dart';
 import 'pages/home/home_page.dart';
 import 'pages/manage_service/manage_service_page.dart';
-import 'pages/profile/add_service.dart';
-import 'pages/profile/my_services.dart';
+import 'pages/my_services/add_service.dart';
+import 'pages/my_services/my_services.dart';
+import 'pages/profile/profile_page.dart';
 import 'pages/search/search_page.dart';
-import 'pages/service_info/service_info.dart';
-import 'pages/settings/settings.dart';
+import 'pages/service_info/service_info_page.dart';
+import 'pages/settings/settings_page.dart';
 import 'pages/signup/signup_page.dart';
 import 'pages/verification/verification_page.dart';
 import 'services/api_firestore.dart';
@@ -58,6 +60,10 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/settings', page: () => SettingsPage()),
         GetPage(
           name: '/profile',
+          page: () => ProfilePage(),
+        ),
+        GetPage(
+          name: '/myservices',
           page: () => ServicePage(),
         ),
         GetPage(
@@ -83,6 +89,10 @@ class MyApp extends StatelessWidget {
           name: '/verify',
           page: () => const VerificationPage(),
           binding: VerificationBindings(),
+        ),
+        GetPage(
+          name: '/favorites',
+          page: () => FavoritesPage(),
         ),
       ],
       theme: ThemeData(

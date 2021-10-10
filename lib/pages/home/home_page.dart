@@ -13,69 +13,79 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const BackgroundGradient(),
-        Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
+        // BackgroundGradient2(),
+        BackgroundGradient2(
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.transparent,
-            title: Text(title, style: const TextStyle(letterSpacing: 3)),
-            centerTitle: true,
-            elevation: 0,
-          ),
-          drawer: Drawer(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  child: const Text("Logout"),
-                  onPressed: () {
-                    Get.toNamed("/");
-                  },
-                ),
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              title: Text(title, style: const TextStyle(letterSpacing: 3)),
+              centerTitle: true,
+              elevation: 0,
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      Get.toNamed("/settings");
+                    },
+                    icon: const Icon(Icons.settings))
               ],
             ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                const SizedBox(height: 24),
-                ElevatedButton.icon(
-                  label: const Text("Explore Services"),
-                  icon: const Icon(Icons.search),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.pinkAccent,
+            drawer: Drawer(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    child: const Text("Logout"),
+                    onPressed: () {
+                      Get.toNamed("/");
+                    },
                   ),
-                  onPressed: () {
-                    Get.toNamed("/search");
-                  },
-                ),
-                const SizedBox(height: 24),
-                const ProfileCard(),
-                const Divider(),
-                const HomeGrid(),
-                ElevatedButton(
-                  child: const Text("Manage Services"),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.purpleAccent,
+                ],
+              ),
+            ),
+            body: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  const SizedBox(height: 24),
+                  ElevatedButton.icon(
+                    label: const Text("Explore Services"),
+                    icon: const Icon(Icons.search),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.pink,
+                    ),
+                    onPressed: () {
+                      Get.toNamed("/search");
+                    },
                   ),
-                  onPressed: () {
-                    Get.toNamed("/profile");
-                  },
-                ),
-                ElevatedButton.icon(
-                  label: const Text("Settings"),
-                  icon: const Icon(Icons.settings),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.purple,
+                  const SizedBox(height: 24),
+                  const ProfileCard(),
+                  const Divider(),
+                  const HomeGrid(),
+                  ElevatedButton.icon(
+                    label: const Text("View Profile"),
+                    icon: const Icon(Icons.person),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.orange,
+                    ),
+                    onPressed: () {
+                      Get.toNamed("/profile");
+                    },
                   ),
-                  onPressed: () {
-                    Get.toNamed("/settings");
-                  },
-                ),
-              ],
+                  ElevatedButton.icon(
+                    label: const Text("My Services"),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.amber,
+                    ),
+                    icon: const Icon(Icons.manage_accounts),
+                    onPressed: () {
+                      Get.toNamed("/myservices");
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

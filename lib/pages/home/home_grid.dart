@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+//@todo add other pages to buttons
 class HomeGrid extends StatelessWidget {
   const HomeGrid({Key? key}) : super(key: key);
 
@@ -22,10 +24,10 @@ class HomeGrid extends StatelessWidget {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    // dashboardController.changeTabIndex(1);
+                    Get.toNamed("/favorites");
                   },
-                  child: const Icon(Icons.compare_arrows)),
-              const Text("View"),
+                  child: const Icon(Icons.favorite)),
+              const Text("Favorites"),
             ],
           ),
           Column(
